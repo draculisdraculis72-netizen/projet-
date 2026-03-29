@@ -32,7 +32,7 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
-  cursor: none;
+  cursor: pointer;
   transition: background .3s, border-color .3s;
   flex-shrink: 0;
   overflow: hidden;
@@ -100,57 +100,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 [data-theme="light"] .cart-btn:hover{background:rgba(0,102,204,.06);}
 .cart-badge{background:var(--accent);color:var(--bg);font-size:10px;font-weight:700;border-radius:2px;padding:1px 6px;min-width:18px;text-align:center;transition:background .3s,color .3s;}
 
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:3px;transition:border-color .2s;}
+.nav-hamburger:hover{border-color:var(--accent);}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--text);transition:all .3s;border-radius:2px;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* MOBILE NAV DRAWER */
+.mobile-nav{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:var(--bg);z-index:1999;flex-direction:column;padding:20px 16px;gap:0;overflow-y:auto;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);border-top:1px solid var(--border);}
+.mobile-nav.open{transform:translateX(0);}
+.mobile-nav a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--text);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--border);display:block;cursor:pointer;transition:color .2s;}
+.mobile-nav a:hover,.mobile-nav a:active{color:var(--accent);}
+.mobile-nav .mobile-search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:10px 14px;margin-bottom:8px;}
+.mobile-nav .mobile-search input{background:none;border:none;outline:none;color:var(--text);font-size:14px;font-family:'Barlow',sans-serif;flex:1;}
+.mobile-nav .mobile-search input::placeholder{color:var(--text2);}
+
+/* MOBILE FILTER BTN */
+.mobile-filter-btn{display:none;align-items:center;gap:8px;padding:9px 16px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:3px;margin-bottom:12px;transition:border-color .2s,color .2s;width:100%;}
+.mobile-filter-btn:hover{border-color:var(--accent);color:var(--accent);}
+
 /* PAGES */
 .page{display:none;min-height:100vh;padding-top:64px;}
 .page.active{display:block;}
 
-/* ===== HERO avec image de fond PC Gamer ===== */
+/* ===== HERO ===== */
 .hero{min-height:calc(100vh - 64px);display:flex;align-items:center;position:relative;overflow:hidden;padding:60px 32px;}
-
-/* Image de fond : setup PC gamer RGB SVG inline */
-.hero-bg-img {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-.hero-bg-img::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right,
-    rgba(5,5,8,0.97) 0%,
-    rgba(5,5,8,0.82) 38%,
-    rgba(5,5,8,0.42) 62%,
-    rgba(5,5,8,0.10) 100%);
-  z-index: 1;
-}
-[data-theme="light"] .hero-bg-img::after {
-  background: linear-gradient(to right,
-    rgba(240,242,248,0.97) 0%,
-    rgba(240,242,248,0.85) 38%,
-    rgba(240,242,248,0.50) 62%,
-    rgba(240,242,248,0.12) 100%);
-}
-.hero-bg-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Accent lumineux cyan sur l'image */
-.hero-img-glow {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    radial-gradient(ellipse 50% 70% at 70% 50%, rgba(0,229,255,0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 40% at 80% 20%, rgba(124,58,237,0.08) 0%, transparent 60%);
-  pointer-events: none;
-}
-
+.hero-bg-img{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,8,0.97) 0%,rgba(5,5,8,0.82) 38%,rgba(5,5,8,0.42) 62%,rgba(5,5,8,0.10) 100%);z-index:1;}
+[data-theme="light"] .hero-bg-img::after{background:linear-gradient(to right,rgba(240,242,248,0.97) 0%,rgba(240,242,248,0.85) 38%,rgba(240,242,248,0.50) 62%,rgba(240,242,248,0.12) 100%);}
+.hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+.hero-img-glow{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 50% 70% at 70% 50%,rgba(0,229,255,0.07) 0%,transparent 70%),radial-gradient(ellipse 30% 40% at 80% 20%,rgba(124,58,237,0.08) 0%,transparent 60%);pointer-events:none;}
 .hero-bg{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 70% 60% at 65% 50%,var(--hero-grad1) 0%,transparent 70%),radial-gradient(ellipse 35% 40% at 15% 75%,var(--hero-grad2) 0%,transparent 60%);transition:background .35s;}
 .hero-grid{position:absolute;inset:0;z-index:2;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 65% 65% at 65% 50%,black 0%,transparent 100%);transition:background-image .35s;}
 .hero-content{position:relative;z-index:3;max-width:680px;}
@@ -174,11 +155,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 @keyframes fadeInUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 /* BUTTONS */
-.btn-primary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:13px 28px;background:var(--accent);color:var(--bg);border:none;cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:transform .2s,filter .2s,background .3s,color .3s;position:relative;overflow:hidden;}
+.btn-primary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:13px 28px;background:var(--accent);color:var(--bg);border:none;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:transform .2s,filter .2s,background .3s,color .3s;position:relative;overflow:hidden;}
 .btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);transform:translateX(-100%);transition:transform .3s;}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.1);}
 .btn-primary:hover::before{transform:translateX(100%);}
-.btn-secondary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:12px 28px;background:transparent;color:var(--text);border:1px solid var(--border);cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:border-color .2s,color .2s,background .3s;}
+.btn-secondary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:12px 28px;background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:border-color .2s,color .2s,background .3s;}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
 
 /* TICKER */
@@ -194,14 +175,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .section-sub{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;transition:color .3s;}
 .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:46px;letter-spacing:-1px;line-height:1;transition:color .3s;}
 .section-title span{color:var(--accent);transition:color .3s;}
-.see-all{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;color:var(--accent);text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;cursor:none;transition:gap .2s,color .3s;}
+.see-all{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;color:var(--accent);text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;cursor:pointer;transition:gap .2s,color .3s;}
 .see-all:hover{gap:14px;}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 /* CATEGORIES */
 .cats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
-.cat-card{background:var(--surface);border:1px solid var(--border);padding:24px 16px;text-align:center;cursor:none;transition:border-color .3s,background .3s,transform .3s;position:relative;overflow:hidden;}
+.cat-card{background:var(--surface);border:1px solid var(--border);padding:24px 16px;text-align:center;cursor:pointer;transition:border-color .3s,background .3s,transform .3s;position:relative;overflow:hidden;}
 .cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .3s,background .3s;}
 .cat-card:hover{border-color:rgba(0,229,255,.3);background:var(--surface2);transform:translateY(-4px);}
 [data-theme="light"] .cat-card:hover{border-color:rgba(0,102,204,.3);}
@@ -220,15 +201,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
 .montage-contacts{background:var(--surface2);border:1px solid var(--border);padding:32px;border-radius:4px;transition:background .3s,border-color .3s;}
 .contact-item{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
-.contact-icon{width:40px;height:40px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent);border-radius:2px;transition:background .3s,border-color .3s,color .3s;}
+.contact-icon{width:40px;height:40px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent);border-radius:2px;flex-shrink:0;transition:background .3s,border-color .3s,color .3s;}
 [data-theme="light"] .contact-icon{background:rgba(0,102,204,.08);border-color:rgba(0,102,204,.25);}
 .contact-info .contact-label{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;transition:color .3s;}
 .contact-info .contact-value{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--text);transition:color .3s;}
-@media(max-width:768px){.montage-grid{grid-template-columns:1fr;}}
 
 /* PRODUCT CARD */
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.product-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:none;transition:border-color .3s,transform .3s,background .3s;position:relative;display:flex;flex-direction:column;}
+.product-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .3s,transform .3s,background .3s;position:relative;display:flex;flex-direction:column;}
 .product-card:hover{border-color:rgba(0,229,255,.25);transform:translateY(-6px);}
 [data-theme="light"] .product-card:hover{border-color:rgba(0,102,204,.25);}
 .product-badge{position:absolute;top:12px;left:12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:3px 9px;z-index:2;border-radius:2px;}
@@ -238,7 +218,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .product-img-wrap{height:200px;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background .3s;}
 .product-img-wrap img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .4s;filter:drop-shadow(0 4px 16px var(--shadow));}
 .product-card:hover .product-img-wrap img{transform:scale(1.08);}
-.product-quick-add{position:absolute;bottom:0;left:0;right:0;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:11px;text-align:center;transform:translateY(100%);transition:transform .3s,background .3s,color .3s;cursor:none;border:none;width:100%;}
+.product-quick-add{position:absolute;bottom:0;left:0;right:0;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:11px;text-align:center;transform:translateY(100%);transition:transform .3s,background .3s,color .3s;cursor:pointer;border:none;width:100%;}
 .product-card:hover .product-quick-add{transform:translateY(0);}
 .product-info{padding:16px;flex:1;display:flex;flex-direction:column;transition:background .3s;}
 .product-brand{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;transition:color .3s;}
@@ -258,7 +238,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 
 /* PROMO */
 .promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.promo-card{padding:44px;position:relative;overflow:hidden;cursor:none;transition:transform .3s,background .3s,border-color .3s;}
+.promo-card{padding:44px;position:relative;overflow:hidden;cursor:pointer;transition:transform .3s,background .3s,border-color .3s;}
 .promo-card:hover{transform:scale(1.01);}
 .promo-card-1{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(0,229,255,.08));border:1px solid rgba(124,58,237,.4);}
 [data-theme="light"] .promo-card-1{background:linear-gradient(135deg,rgba(109,40,217,.1),rgba(0,102,204,.06));border-color:rgba(109,40,217,.3);}
@@ -272,7 +252,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 
 /* BRANDS */
 .brands-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--border);border:1px solid var(--border);transition:background .3s,border-color .3s;}
-.brand-item{background:var(--bg);padding:26px 16px;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .2s;}
+.brand-item{background:var(--bg);padding:26px 16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;}
 .brand-item:hover{background:var(--surface);}
 .brand-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:2px;color:var(--border);text-transform:uppercase;transition:color .2s,color .3s;}
 .brand-item:hover .brand-name{color:var(--text2);}
@@ -292,7 +272,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .cart-sidebar.open{transform:translateX(0);}
 .cart-header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--border);transition:border-color .3s;}
 .cart-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:var(--text);transition:color .3s;}
-.cart-close{background:none;border:1px solid var(--border);color:var(--text2);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:none;font-size:18px;border-radius:2px;transition:border-color .2s,color .2s,background .3s;}
+.cart-close{background:none;border:1px solid var(--border);color:var(--text2);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;border-radius:2px;transition:border-color .2s,color .2s,background .3s;}
 .cart-close:hover{border-color:var(--red);color:var(--red);}
 .cart-items{flex:1;overflow-y:auto;padding:18px 24px;}
 .cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);transition:border-color .3s;}
@@ -304,10 +284,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .cart-item-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.2;margin:3px 0;transition:color .3s;}
 .cart-item-price{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:var(--accent);transition:color .3s;}
 .cart-item-qty{display:flex;align-items:center;gap:10px;margin-top:8px;}
-.qty-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:none;font-size:14px;transition:border-color .2s,background .3s,color .3s;border-radius:2px;}
+.qty-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:border-color .2s,background .3s,color .3s;border-radius:2px;}
 .qty-btn:hover{border-color:var(--accent);}
 .qty-val{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text);min-width:20px;text-align:center;transition:color .3s;}
-.cart-remove{background:none;border:none;color:var(--text2);cursor:none;font-size:16px;padding:4px;transition:color .2s;margin-left:auto;}
+.cart-remove{background:none;border:none;color:var(--text2);cursor:pointer;font-size:16px;padding:4px;transition:color .2s;margin-left:auto;}
 .cart-remove:hover{color:var(--red);}
 .cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:var(--text2);}
 .cart-empty-icon{font-size:60px;opacity:.3;}
@@ -317,9 +297,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .cart-subtotal-label{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;transition:color .3s;}
 .cart-subtotal-price{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--text);transition:color .3s;}
 .cart-shipping{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;margin-bottom:14px;}
-.cart-checkout{width:100%;padding:14px;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:filter .2s,background .3s,color .3s;}
+.cart-checkout{width:100%;padding:14px;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:filter .2s,background .3s,color .3s;}
 .cart-checkout:hover{filter:brightness(1.1);}
-.cart-continue{width:100%;padding:10px;background:transparent;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border);cursor:none;margin-top:8px;transition:border-color .2s,color .2s,background .3s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.cart-continue{width:100%;padding:10px;background:transparent;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;margin-top:8px;transition:border-color .2s,color .2s,background .3s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
 .cart-continue:hover{border-color:var(--text2);color:var(--text);}
 
 /* TOAST */
@@ -336,11 +316,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .filter-section{margin-bottom:22px;}
 .filter-section:last-child{margin-bottom:0;}
 .filter-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);transition:color .3s,border-color .3s;}
-.filter-option{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:none;}
-.filter-option input[type=checkbox]{appearance:none;width:14px;height:14px;border:1px solid var(--border);background:var(--bg);cursor:none;position:relative;flex-shrink:0;transition:border-color .2s,background .2s;border-radius:2px;}
+.filter-option{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer;}
+.filter-option input[type=checkbox]{appearance:none;width:14px;height:14px;border:1px solid var(--border);background:var(--bg);cursor:pointer;position:relative;flex-shrink:0;transition:border-color .2s,background .2s;border-radius:2px;}
 .filter-option input[type=checkbox]:checked{background:var(--accent);border-color:var(--accent);}
 .filter-option input[type=checkbox]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:9px;font-weight:900;}
-.filter-option label{font-size:12px;color:var(--text2);cursor:none;transition:color .2s;flex:1;}
+.filter-option label{font-size:12px;color:var(--text2);cursor:pointer;transition:color .2s;flex:1;}
 .filter-option:hover label{color:var(--text);}
 .filter-count{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text2);transition:color .3s;}
 .price-inputs{display:flex;align-items:center;gap:8px;margin-top:8px;}
@@ -352,10 +332,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .catalog-count span{color:var(--accent);transition:color .3s;}
 .catalog-sort{display:flex;align-items:center;gap:10px;}
 .catalog-sort label{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:1px;transition:color .3s;}
-.catalog-sort select{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;cursor:none;outline:none;transition:border-color .2s,background .3s,color .3s;border-radius:2px;}
+.catalog-sort select{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;cursor:pointer;outline:none;transition:border-color .2s,background .3s,color .3s;border-radius:2px;}
 .catalog-sort select:focus{border-color:var(--accent);}
 .catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.filter-reset{width:100%;margin-top:10px;padding:9px;background:transparent;border:1px solid var(--border);color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:none;transition:border-color .2s,color .2s,background .3s;border-radius:2px;}
+.filter-reset{width:100%;margin-top:10px;padding:9px;background:transparent;border:1px solid var(--border);color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .3s;border-radius:2px;}
 .filter-reset:hover{border-color:var(--red);color:var(--red);}
 
 /* PRODUCT MODAL */
@@ -363,7 +343,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .modal-overlay.open{opacity:1;pointer-events:all;}
 .product-modal{background:var(--bg3);border:1px solid var(--border);width:100%;max-width:860px;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.95);transition:transform .3s,background .3s,border-color .3s;}
 .modal-overlay.open .product-modal{transform:scale(1);}
-.modal-close{position:absolute;top:16px;right:16px;background:var(--surface);border:1px solid var(--border);color:var(--text2);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:none;font-size:18px;border-radius:2px;z-index:1;transition:border-color .2s,color .2s,background .3s;}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--surface);border:1px solid var(--border);color:var(--text2);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;border-radius:2px;z-index:1;transition:border-color .2s,color .2s,background .3s;}
 .modal-close:hover{border-color:var(--red);color:var(--red);}
 .modal-inner{display:grid;grid-template-columns:1fr 1fr;}
 .modal-img-area{background:var(--bg2);display:flex;align-items:center;justify-content:center;padding:40px;min-height:340px;border-right:1px solid var(--border);transition:background .3s,border-color .3s;}
@@ -379,7 +359,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .spec-row:first-child{border-top:1px solid var(--border);}
 .spec-key{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;width:120px;flex-shrink:0;transition:color .3s;}
 .spec-val{font-size:12px;color:var(--text);transition:color .3s;}
-.modal-add-btn{width:100%;padding:14px;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:filter .2s,background .3s,color .3s;}
+.modal-add-btn{width:100%;padding:14px;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:filter .2s,background .3s,color .3s;}
 .modal-add-btn:hover{filter:brightness(1.1);}
 
 /* CHECKOUT */
@@ -396,114 +376,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;height:64px;display:flex;al
 .checkout-summary-title{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;transition:color .3s;}
 .checkout-line{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:5px;transition:color .3s;}
 .checkout-line.total{border-top:1px solid var(--border);padding-top:9px;margin-top:5px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;transition:border-color .3s,color .3s;}
-.checkout-submit{width:100%;padding:14px;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:filter .2s,background .3s,color .3s;}
+.checkout-submit{width:100%;padding:14px;background:var(--accent);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:filter .2s,background .3s,color .3s;}
 .checkout-submit:hover{filter:brightness(1.1);}
 .success-screen{text-align:center;padding:52px 32px;}
 .success-icon{font-size:68px;margin-bottom:18px;}
 .success-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:34px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:10px;transition:color .3s;}
 .success-desc{font-size:13px;color:var(--text2);max-width:320px;margin:0 auto 24px;line-height:1.7;transition:color .3s;}
 
-/* ===== CONTACT MODAL ===== */
-.contact-modal-box {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  width: 100%;
-  max-width: 480px;
-  position: relative;
-  transform: scale(.95);
-  transition: transform .3s, background .3s, border-color .3s;
-  padding: 40px;
-  border-radius: 4px;
-}
-.modal-overlay.open .contact-modal-box { transform: scale(1); }
-
-.contact-modal-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: 32px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.contact-modal-title span { color: var(--accent); }
-.contact-modal-sub {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--text2);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 32px;
-}
-
-.contact-modal-item {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 18px 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  margin-bottom: 14px;
-  transition: border-color .2s, background .3s;
-}
-.contact-modal-item:hover { border-color: var(--accent); }
-.contact-modal-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-.icon-phone { background: rgba(0,229,255,.1); border: 1px solid rgba(0,229,255,.3); }
-.icon-email { background: rgba(124,58,237,.12); border: 1px solid rgba(124,58,237,.3); }
-.icon-wa    { background: rgba(0,255,136,.1);  border: 1px solid rgba(0,255,136,.3); }
-[data-theme="light"] .icon-phone { background: rgba(0,102,204,.08); border-color: rgba(0,102,204,.25); }
-[data-theme="light"] .icon-email { background: rgba(109,40,217,.07); border-color: rgba(109,40,217,.25); }
-[data-theme="light"] .icon-wa    { background: rgba(0,168,84,.08); border-color: rgba(0,168,84,.25); }
-
-.contact-modal-info-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 3px;
-}
-.contact-modal-info-value {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  color: var(--text);
-}
-.contact-modal-item a {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex: 1;
-}
-.contact-modal-horaires {
-  margin-top: 24px;
-  padding: 14px 18px;
-  background: rgba(0,229,255,.04);
-  border: 1px solid rgba(0,229,255,.15);
-  border-radius: 4px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--text2);
-  letter-spacing: 1px;
-  text-align: center;
-}
-[data-theme="light"] .contact-modal-horaires {
-  background: rgba(0,102,204,.04);
-  border-color: rgba(0,102,204,.15);
-}
-.contact-modal-horaires strong { color: var(--accent); }
+/* CONTACT MODAL */
+.contact-modal-box{background:var(--bg3);border:1px solid var(--border);width:100%;max-width:480px;position:relative;transform:scale(.95);transition:transform .3s,background .3s,border-color .3s;padding:40px;border-radius:4px;}
+.modal-overlay.open .contact-modal-box{transform:scale(1);}
+.contact-modal-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-bottom:6px;}
+.contact-modal-title span{color:var(--accent);}
+.contact-modal-sub{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;}
+.contact-modal-item{display:flex;align-items:center;gap:18px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:4px;margin-bottom:14px;transition:border-color .2s,background .3s;}
+.contact-modal-item:hover{border-color:var(--accent);}
+.contact-modal-icon{width:48px;height:48px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.icon-phone{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);}
+.icon-email{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);}
+.icon-wa{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);}
+[data-theme="light"] .icon-phone{background:rgba(0,102,204,.08);border-color:rgba(0,102,204,.25);}
+[data-theme="light"] .icon-email{background:rgba(109,40,217,.07);border-color:rgba(109,40,217,.25);}
+[data-theme="light"] .icon-wa{background:rgba(0,168,84,.08);border-color:rgba(0,168,84,.25);}
+.contact-modal-info-label{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.contact-modal-info-value{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--text);}
+.contact-modal-item a{text-decoration:none;color:inherit;display:flex;align-items:center;gap:18px;flex:1;}
+.contact-modal-horaires{margin-top:24px;padding:14px 18px;background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.15);border-radius:4px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:1px;text-align:center;}
+[data-theme="light"] .contact-modal-horaires{background:rgba(0,102,204,.04);border-color:rgba(0,102,204,.15);}
+.contact-modal-horaires strong{color:var(--accent);}
 
 /* FOOTER */
 footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32px 28px;transition:background .3s,border-color .3s;}
@@ -512,38 +412,32 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
 .footer-logo span{color:var(--accent);transition:color .3s;}
 .footer-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:18px;max-width:270px;transition:color .3s;}
 .footer-socials{display:flex;gap:8px;}
-.social-btn{width:34px;height:34px;background:var(--surface);border:1px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:none;transition:border-color .2s,background .2s;}
+.social-btn{width:34px;height:34px;background:var(--surface);border:1px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:border-color .2s,background .2s;}
 .social-btn:hover{border-color:var(--accent);background:rgba(0,229,255,.08);}
 [data-theme="light"] .social-btn:hover{background:rgba(0,102,204,.07);}
 .footer-col-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);transition:color .3s,border-color .3s;}
 .footer-links{list-style:none;}
 .footer-links li{margin-bottom:8px;}
-.footer-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .2s;cursor:none;}
+.footer-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .2s;cursor:pointer;}
 .footer-links a:hover{color:var(--accent);}
 .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;transition:border-color .3s;}
 .footer-copy{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text2);transition:color .3s;}
 .footer-pays{display:flex;gap:6px;}
 .pay-badge{background:var(--surface);border:1px solid var(--border);padding:3px 8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text2);border-radius:2px;transition:background .3s,border-color .3s,color .3s;}
 
-/* ===== BLOG ===== */
+/* BLOG */
 .blog-hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:48px 32px 32px;transition:background .3s,border-color .3s;position:relative;overflow:hidden;}
 .blog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,var(--hero-grad1),transparent 70%);pointer-events:none;}
 .blog-hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:58px;letter-spacing:-1px;color:var(--text);line-height:1;margin-bottom:10px;position:relative;z-index:1;transition:color .3s;}
 .blog-hero h1 span{color:var(--accent);transition:color .3s;}
 .blog-hero p{color:var(--text2);font-size:14px;position:relative;z-index:1;transition:color .3s;}
-
-/* Filtres blog */
 .blog-filters{display:flex;align-items:center;gap:10px;padding:20px 32px;border-bottom:1px solid var(--border);background:var(--bg3);overflow-x:auto;transition:background .3s,border-color .3s;}
-.blog-filter-btn{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;background:var(--surface);border:1px solid var(--border);color:var(--text2);cursor:none;border-radius:2px;white-space:nowrap;transition:border-color .2s,color .2s,background .3s;}
+.blog-filter-btn{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;background:var(--surface);border:1px solid var(--border);color:var(--text2);cursor:pointer;border-radius:2px;white-space:nowrap;transition:border-color .2s,color .2s,background .3s;}
 .blog-filter-btn:hover,.blog-filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(0,229,255,.06);}
 [data-theme="light"] .blog-filter-btn:hover,[data-theme="light"] .blog-filter-btn.active{background:rgba(0,102,204,.06);}
-
-/* Grille articles */
 .blog-layout{padding:36px 32px 72px;display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;}
 .blog-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-
-/* Carte article */
-.blog-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:none;transition:border-color .3s,transform .3s,background .3s;display:flex;flex-direction:column;}
+.blog-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .3s,transform .3s,background .3s;display:flex;flex-direction:column;}
 .blog-card:hover{border-color:rgba(0,229,255,.3);transform:translateY(-5px);}
 [data-theme="light"] .blog-card:hover{border-color:rgba(0,102,204,.3);}
 .blog-card-img{height:170px;overflow:hidden;position:relative;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:64px;transition:background .3s;}
@@ -561,27 +455,21 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
 .blog-author-name{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text2);transition:color .3s;}
 .blog-read-btn{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--accent);text-transform:uppercase;transition:gap .2s,color .3s;display:flex;align-items:center;gap:4px;}
 .blog-card:hover .blog-read-btn{gap:8px;}
-
-/* Article vedette (première carte grande) */
 .blog-card.featured{grid-column:1/-1;flex-direction:row;}
 .blog-card.featured .blog-card-img{width:360px;height:auto;flex-shrink:0;font-size:90px;}
 .blog-card.featured .blog-card-title{font-size:24px;}
-
-/* Sidebar blog */
 .blog-sidebar{display:flex;flex-direction:column;gap:18px;position:sticky;top:88px;}
 .blog-widget{background:var(--surface);border:1px solid var(--border);padding:20px;transition:background .3s,border-color .3s;}
 .blog-widget-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);transition:color .3s,border-color .3s;}
-.blog-top-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);cursor:none;transition:border-color .3s;}
+.blog-top-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:border-color .3s;}
 .blog-top-item:last-child{border-bottom:none;}
 .blog-top-item:hover .blog-top-title{color:var(--accent);}
 .blog-top-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--border);line-height:1;flex-shrink:0;width:28px;transition:color .3s;}
 .blog-top-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:3px;transition:color .3s;}
 .blog-top-meta{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text2);transition:color .3s;}
 .blog-tag-cloud{display:flex;flex-wrap:wrap;gap:6px;}
-.blog-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:4px 10px;background:var(--bg);border:1px solid var(--border);color:var(--text2);border-radius:2px;cursor:none;transition:border-color .2s,color .2s,background .3s;}
+.blog-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:4px 10px;background:var(--bg);border:1px solid var(--border);color:var(--text2);border-radius:2px;cursor:pointer;transition:border-color .2s,color .2s,background .3s;}
 .blog-tag:hover{border-color:var(--accent);color:var(--accent);}
-
-/* Modal article */
 .article-modal{background:var(--bg3);border:1px solid var(--border);width:100%;max-width:760px;max-height:92vh;overflow-y:auto;position:relative;transform:scale(.95);transition:transform .3s,background .3s,border-color .3s;border-radius:2px;}
 .modal-overlay.open .article-modal{transform:scale(1);}
 .article-modal-img{height:280px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:110px;position:relative;border-bottom:1px solid var(--border);transition:background .3s,border-color .3s;}
@@ -601,8 +489,178 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
 .article-related{margin-top:28px;padding:20px;background:var(--surface);border:1px solid var(--border);transition:background .3s,border-color .3s;}
 .article-related-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:12px;transition:color .3s;}
 .article-related-links{display:flex;flex-direction:column;gap:8px;}
-.article-related-link{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:var(--text);cursor:none;transition:color .2s;display:flex;align-items:center;gap:8px;}
+.article-related-link{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;transition:color .2s;display:flex;align-items:center;gap:8px;}
 .article-related-link:hover{color:var(--accent);}
+
+/* =====================================================
+   RESPONSIVE — TABLETTE (≤1024px)
+   ===================================================== */
+@media (max-width: 1024px) {
+  .cats-grid          { grid-template-columns: repeat(5, 1fr); }
+  .products-grid      { grid-template-columns: repeat(3, 1fr); }
+  .catalog-grid       { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid        { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .hero-stats         { right: 20px; gap: 24px; }
+  .brands-grid        { grid-template-columns: repeat(4, 1fr); }
+  .features-grid      { grid-template-columns: repeat(2, 1fr); }
+  .blog-layout        { grid-template-columns: 1fr; }
+  .blog-sidebar       { position: static; }
+  .blog-card.featured { flex-direction: column; }
+  .blog-card.featured .blog-card-img { width: 100%; height: 200px; }
+  .catalog-layout     { grid-template-columns: 220px 1fr; gap: 16px; }
+  .section            { padding: 60px 24px; }
+}
+
+/* =====================================================
+   RESPONSIVE — MOBILE (≤768px)
+   ===================================================== */
+@media (max-width: 768px) {
+  /* Désactiver curseur custom */
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto; }
+  * { cursor: auto !important; }
+
+  /* NAV */
+  nav                  { padding: 0 16px; height: 60px; }
+  .nav-links           { display: none; }
+  .nav-search-wrap     { display: none; }
+  .nav-hamburger       { display: flex; }
+  .mobile-nav          { display: flex; top: 60px; }
+  .nav-right           { gap: 8px; }
+  .cart-btn            { padding: 7px 12px; font-size: 12px; gap: 6px; }
+  .nav-logo            { font-size: 20px; letter-spacing: 2px; }
+  .page                { padding-top: 60px; }
+
+  /* HERO */
+  .hero                { padding: 36px 16px 60px; min-height: calc(100vh - 60px); flex-direction: column; justify-content: center; }
+  .hero-bg-img         { opacity: 0.4; }
+  .hero h1             { font-size: clamp(38px, 11vw, 64px); }
+  .hero-desc           { font-size: 13px; max-width: 100%; }
+  .hero-ctas           { flex-direction: column; gap: 10px; }
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary { width: 100%; text-align: center; padding: 14px; clip-path: none; border-radius: 3px; }
+  .hero-stats          { position: static; margin-top: 36px; gap: 0; flex-wrap: nowrap; justify-content: space-between; width: 100%; }
+  .stat                { flex: 1; text-align: center; border-left: 1px solid var(--border); padding-left: 0; }
+  .stat:first-child    { border-left: none; }
+  .stat-num            { font-size: 24px; }
+  .stat-label          { font-size: 9px; }
+  .hero-badge          { font-size: 9px; padding: 4px 10px; }
+
+  /* TICKER */
+  .ticker-item         { font-size: 11px; padding: 0 18px; }
+
+  /* SECTIONS */
+  .section             { padding: 44px 16px; }
+  .section-title       { font-size: 30px; }
+  .section-header      { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 28px; }
+
+  /* CATÉGORIES */
+  .cats-grid           { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .cat-card            { padding: 18px 10px; }
+  .cat-icon            { font-size: 26px; margin-bottom: 6px; }
+  .cat-name            { font-size: 10px; }
+  .cat-count           { font-size: 9px; }
+
+  /* PRODUITS */
+  .products-grid       { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-img-wrap    { height: 150px; }
+  .product-quick-add   { transform: translateY(0); font-size: 11px; padding: 9px; letter-spacing: 1px; }
+  .product-name        { font-size: 13px; }
+  .product-price       { font-size: 18px; }
+  .product-specs       { display: none; }
+
+  /* PROMO */
+  .promo-grid          { grid-template-columns: 1fr; gap: 12px; }
+  .promo-card          { padding: 28px 20px; }
+  .promo-title         { font-size: 30px; }
+  .promo-emoji         { font-size: 55px; right: 16px; }
+  .promo-desc          { max-width: 65%; font-size: 12px; }
+
+  /* MONTAGE */
+  .montage-grid        { grid-template-columns: 1fr; gap: 20px; }
+  .montage-form,
+  .montage-contacts    { padding: 20px 16px; }
+
+  /* BRANDS */
+  .brands-grid         { grid-template-columns: repeat(4, 1fr); }
+  .brand-item          { padding: 18px 10px; }
+  .brand-name          { font-size: 12px; letter-spacing: 1px; }
+
+  /* FEATURES */
+  .features-grid       { grid-template-columns: 1fr 1fr; }
+  .feature-item        { padding: 24px 16px; }
+  .feature-title       { font-size: 15px; }
+  .feature-desc        { font-size: 11px; }
+
+  /* FOOTER */
+  .footer-grid         { grid-template-columns: 1fr; gap: 24px; }
+  footer               { padding: 36px 16px 20px; }
+  .footer-bottom       { flex-direction: column; gap: 14px; text-align: center; }
+  .footer-pays         { flex-wrap: wrap; justify-content: center; }
+
+  /* CATALOG */
+  .catalog-hero        { padding: 24px 16px 16px; }
+  .catalog-hero h1     { font-size: 34px; }
+  .catalog-layout      { grid-template-columns: 1fr; padding: 12px 16px 40px; }
+  .catalog-sidebar     { position: static; display: none; top: auto; }
+  .catalog-sidebar.show{ display: block; margin-bottom: 16px; animation: fadeInUp .3s ease; }
+  .mobile-filter-btn   { display: flex; }
+  .catalog-grid        { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .catalog-toolbar     { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .catalog-sort        { width: 100%; justify-content: space-between; }
+  .catalog-sort select { flex: 1; }
+
+  /* CART */
+  .cart-sidebar        { width: 100%; max-width: 100%; }
+
+  /* MODALS */
+  .modal-overlay       { padding: 8px; align-items: flex-end; }
+  .product-modal       { max-height: 95vh; border-radius: 8px 8px 0 0; }
+  .modal-inner         { grid-template-columns: 1fr; }
+  .modal-img-area      { min-height: 180px; border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
+  .modal-img-area img  { max-height: 160px; }
+  .modal-info          { padding: 20px 16px; }
+  .modal-name          { font-size: 20px; }
+  .modal-price         { font-size: 28px; }
+  .checkout-modal      { padding: 24px 16px; border-radius: 8px 8px 0 0; }
+  .form-grid           { grid-template-columns: 1fr; }
+  .contact-modal-box   { padding: 24px 16px; max-width: 100%; border-radius: 8px 8px 0 0; }
+  .contact-modal-title { font-size: 24px; }
+  .contact-modal-info-value { font-size: 17px; }
+
+  /* BLOG */
+  .blog-hero           { padding: 28px 16px 18px; }
+  .blog-hero h1        { font-size: 36px; }
+  .blog-filters        { padding: 12px 16px; }
+  .blog-layout         { padding: 20px 16px 48px; grid-template-columns: 1fr; }
+  .blog-grid           { grid-template-columns: 1fr; gap: 12px; }
+  .blog-card.featured  { flex-direction: column; grid-column: auto; }
+  .blog-card.featured .blog-card-img { width: 100%; height: 160px; font-size: 60px; }
+  .blog-card.featured .blog-card-title { font-size: 18px; }
+  .blog-sidebar        { position: static; }
+
+  /* ARTICLE MODAL */
+  .article-modal       { max-height: 95vh; border-radius: 8px 8px 0 0; }
+  .article-modal-img   { height: 140px; font-size: 60px; }
+  .article-modal-body  { padding: 20px 16px 32px; }
+  .article-title       { font-size: 22px; }
+  .article-meta        { flex-wrap: wrap; gap: 8px; }
+}
+
+/* =====================================================
+   TRÈS PETIT MOBILE (≤420px)
+   ===================================================== */
+@media (max-width: 420px) {
+  .products-grid       { grid-template-columns: 1fr; }
+  .cats-grid           { grid-template-columns: repeat(2, 1fr); }
+  .features-grid       { grid-template-columns: 1fr; }
+  .brands-grid         { grid-template-columns: repeat(2, 1fr); }
+  .catalog-grid        { grid-template-columns: 1fr; }
+  .hero h1             { font-size: 34px; }
+  .section-title       { font-size: 26px; }
+  .promo-emoji         { display: none; }
+  .promo-desc          { max-width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -637,52 +695,33 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
   <div class="checkout-modal" id="checkoutContent"></div>
 </div>
 
-<!-- ===== CONTACT MODAL ===== -->
+<!-- CONTACT MODAL -->
 <div class="modal-overlay" id="contactModal" onclick="if(event.target===this)closeContactModal()">
   <div class="contact-modal-box">
     <button class="modal-close" onclick="closeContactModal()">✕</button>
     <div class="contact-modal-title">NOUS <span>CONTACTER</span></div>
     <div class="contact-modal-sub">// Disponibles 7j/7 — Réponse rapide garantie</div>
-
-    <!-- Téléphone -->
     <div class="contact-modal-item">
       <div class="contact-modal-icon icon-phone">📞</div>
-      <div>
-        <div class="contact-modal-info-label">Téléphone</div>
-        <div class="contact-modal-info-value">+241 076 545 956</div>
-      </div>
+      <div><div class="contact-modal-info-label">Téléphone</div><div class="contact-modal-info-value">+241 076 545 956</div></div>
     </div>
-
-    <!-- Email -->
     <div class="contact-modal-item">
       <div class="contact-modal-icon icon-email">✉️</div>
-        <div>
-          <div class="contact-modal-info-label">Email</div>
-          <div class="contact-modal-info-value">nathanowanga290@gmail.com</div>
-        </div>
-      
+      <div><div class="contact-modal-info-label">Email</div><div class="contact-modal-info-value">nathanowanga290@gmail.com</div></div>
     </div>
-
-    <!-- WhatsApp -->
     <div class="contact-modal-item">
       <a href="https://wa.me/241076545956" target="_blank" rel="noopener">
         <div class="contact-modal-icon icon-wa">💬</div>
-        <div>
-          <div class="contact-modal-info-label">WhatsApp — Cliquez pour discuter</div>
-          <div class="contact-modal-info-value">+241 076 545 956</div>
-        </div>
+        <div><div class="contact-modal-info-label">WhatsApp — Cliquez pour discuter</div><div class="contact-modal-info-value">+241 076 545 956</div></div>
       </a>
     </div>
-
-    <div class="contact-modal-horaires">
-      🕐 Support disponible : <strong>Lun – Dim, 09h00 – 19h00</strong> · Libreville, GABON
-    </div>
+    <div class="contact-modal-horaires">🕐 Support disponible : <strong>Lun – Dim, 09h00 – 19h00</strong> · Libreville, GABON</div>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" onclick="showPage('home')" style="cursor:none;">GAB<span>HARDWARE</span></a>
+  <a class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">GAB<span>HARDWARE</span></a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nav-home" class="active">Accueil</a></li>
     <li><a onclick="showPage('catalog')" id="nav-catalog">Catalogue</a></li>
@@ -697,558 +736,125 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
       <input type="text" id="searchInput" placeholder="Rechercher un produit..." oninput="handleSearch(this.value)">
     </div>
     <label class="theme-toggle" title="Changer de thème" onclick="toggleTheme()">
-      <div class="theme-toggle-track">
-        <span>🌙</span>
-        <span>☀️</span>
-      </div>
+      <div class="theme-toggle-track"><span>🌙</span><span>☀️</span></div>
       <div class="theme-toggle-thumb"></div>
     </label>
-    <button class="cart-btn" onclick="openCart()">🛒 Panier <span class="cart-badge" id="cartBadge">0</span></button>
+    <button class="cart-btn" onclick="openCart()">🛒 <span style="display:none;" class="cart-label-full">Panier </span><span class="cart-badge" id="cartBadge">0</span></button>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-search">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Rechercher un produit..." oninput="handleSearch(this.value);if(this.value)closeMobileNav();">
+  </div>
+  <a onclick="showPage('home');closeMobileNav()">🏠 Accueil</a>
+  <a onclick="showPage('catalog');closeMobileNav()">📦 Catalogue</a>
+  <a onclick="goSection('montage');closeMobileNav()">🔧 Montage PC</a>
+  <a onclick="goSection('promo');closeMobileNav()">🔥 Promos</a>
+  <a onclick="showPage('blog');closeMobileNav()">📝 Blog</a>
+  <a onclick="openContactModal();closeMobileNav()">📞 Contact</a>
+  <div style="margin-top:24px;display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--border);">
+    <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:2px;">THÈME</span>
+    <label class="theme-toggle" onclick="toggleTheme()">
+      <div class="theme-toggle-track"><span>🌙</span><span>☀️</span></div>
+      <div class="theme-toggle-thumb"></div>
+    </label>
+  </div>
+</div>
 
 <!-- HOME PAGE -->
 <div class="page active" id="page-home">
 
-  <!-- HERO avec fond PC Gamer SVG inline -->
   <section class="hero">
-    <!-- Setup PC gamer RGB — illustration SVG 100% inline -->
     <div class="hero-bg-img">
       <svg class="hero-bg-svg" viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <!-- Fond sombre de pièce -->
-          <radialGradient id="roomGrad" cx="70%" cy="50%" r="60%">
-            <stop offset="0%" stop-color="#0d0820"/>
-            <stop offset="100%" stop-color="#020205"/>
-          </radialGradient>
-          <!-- Lueur RGB principale cyan -->
-          <radialGradient id="cyanGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
-          </radialGradient>
-          <!-- Lueur violette -->
-          <radialGradient id="purpleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-          </radialGradient>
-          <!-- Lueur orange -->
-          <radialGradient id="orangeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.4"/>
-            <stop offset="100%" stop-color="#ff6b35" stop-opacity="0"/>
-          </radialGradient>
-          <!-- Écran monitor gradient -->
-          <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#001a2e"/>
-            <stop offset="40%" stop-color="#00111f"/>
-            <stop offset="100%" stop-color="#000810"/>
-          </linearGradient>
-          <!-- GPU gradient -->
-          <linearGradient id="gpuGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#1a1a2e"/>
-            <stop offset="100%" stop-color="#0d0d1a"/>
-          </linearGradient>
-          <!-- Desk surface -->
-          <linearGradient id="deskGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#111122"/>
-            <stop offset="100%" stop-color="#08080f"/>
-          </linearGradient>
-          <!-- Tour PC -->
-          <linearGradient id="towerGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#181828"/>
-            <stop offset="60%" stop-color="#0f0f1e"/>
-            <stop offset="100%" stop-color="#0a0a16"/>
-          </linearGradient>
-          <!-- Verre trempé -->
-          <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
-            <stop offset="50%" stop-color="#00e5ff" stop-opacity="0.03"/>
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.01"/>
-          </linearGradient>
-          <!-- Clavier gradient -->
-          <linearGradient id="kbGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1a1a2e"/>
-            <stop offset="100%" stop-color="#0d0d1a"/>
-          </linearGradient>
-          <!-- RGB strips -->
-          <linearGradient id="rgbStrip1" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#ff0050"/>
-            <stop offset="25%" stop-color="#ff6b35"/>
-            <stop offset="50%" stop-color="#00e5ff"/>
-            <stop offset="75%" stop-color="#7c3aed"/>
-            <stop offset="100%" stop-color="#ff0050"/>
-          </linearGradient>
-          <linearGradient id="rgbStrip2" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#7c3aed"/>
-            <stop offset="33%" stop-color="#00e5ff"/>
-            <stop offset="66%" stop-color="#00ff88"/>
-            <stop offset="100%" stop-color="#7c3aed"/>
-          </linearGradient>
-          <!-- Glow filter -->
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="18" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="tinyGlow">
-            <feGaussianBlur stdDeviation="2.5" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="screenBloom" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="22" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <clipPath id="monitorClip">
-            <rect x="720" y="90" width="480" height="295" rx="4"/>
-          </clipPath>
-          <clipPath id="glassClip">
-            <rect x="875" y="230" width="148" height="340" rx="8"/>
-          </clipPath>
+          <radialGradient id="roomGrad" cx="70%" cy="50%" r="60%"><stop offset="0%" stop-color="#0d0820"/><stop offset="100%" stop-color="#020205"/></radialGradient>
+          <radialGradient id="cyanGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00e5ff" stop-opacity="0.55"/><stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="purpleGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7c3aed" stop-opacity="0.5"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+          <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#001a2e"/><stop offset="40%" stop-color="#00111f"/><stop offset="100%" stop-color="#000810"/></linearGradient>
+          <linearGradient id="gpuGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#0d0d1a"/></linearGradient>
+          <linearGradient id="deskGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#111122"/><stop offset="100%" stop-color="#08080f"/></linearGradient>
+          <linearGradient id="towerGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#181828"/><stop offset="60%" stop-color="#0f0f1e"/><stop offset="100%" stop-color="#0a0a16"/></linearGradient>
+          <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/><stop offset="50%" stop-color="#00e5ff" stop-opacity="0.03"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.01"/></linearGradient>
+          <linearGradient id="kbGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#0d0d1a"/></linearGradient>
+          <linearGradient id="rgbStrip1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff0050"/><stop offset="25%" stop-color="#ff6b35"/><stop offset="50%" stop-color="#00e5ff"/><stop offset="75%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#ff0050"/></linearGradient>
+          <linearGradient id="rgbStrip2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7c3aed"/><stop offset="33%" stop-color="#00e5ff"/><stop offset="66%" stop-color="#00ff88"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="18" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="tinyGlow"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="screenBloom" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <clipPath id="monitorClip"><rect x="720" y="90" width="480" height="295" rx="4"/></clipPath>
         </defs>
-
-        <!-- ═══════════════════════════════════ FOND PIÈCE ═══════════════════════════════════ -->
         <rect width="1400" height="800" fill="url(#roomGrad)"/>
-
-        <!-- Mur du fond avec texture subtile -->
         <rect width="1400" height="560" fill="#050509" opacity="0.6"/>
-
-        <!-- Lignes de mur / perspective -->
         <line x1="0" y1="540" x2="1400" y2="540" stroke="#0a0a18" stroke-width="2"/>
         <line x1="0" y1="542" x2="1400" y2="542" stroke="#00e5ff" stroke-width="0.4" opacity="0.25"/>
-
-        <!-- Ambiance lumineuse arrière -->
         <ellipse cx="1050" cy="350" rx="380" ry="280" fill="url(#cyanGlow)" opacity="0.35"/>
         <ellipse cx="1200" cy="200" rx="220" ry="180" fill="url(#purpleGlow)" opacity="0.3"/>
-
-        <!-- Rayures décoratives mur (néons) -->
-        <rect x="660" y="0" width="2" height="540" fill="#00e5ff" opacity="0.06"/>
-        <rect x="1380" y="0" width="2" height="540" fill="#7c3aed" opacity="0.05"/>
-
-        <!-- ═══════════════════════════════════ BUREAU ═══════════════════════════════════ -->
-        <!-- Surface bureau principale -->
         <rect x="580" y="538" width="820" height="22" rx="3" fill="url(#deskGrad)"/>
-        <rect x="580" y="538" width="820" height="4" rx="2" fill="#1a1a30" opacity="0.9"/>
-        <!-- Reflet bord bureau -->
         <rect x="580" y="538" width="820" height="1.5" fill="#00e5ff" opacity="0.18"/>
-
-        <!-- Pied bureau gauche -->
         <rect x="600" y="558" width="18" height="242" rx="4" fill="#0d0d1a"/>
-        <!-- Pied bureau droit -->
         <rect x="1362" y="558" width="18" height="242" rx="4" fill="#0d0d1a"/>
-
-        <!-- ═══════════════════════════════════ MONITEUR PRINCIPAL ═══════════════════════════════════ -->
-        <!-- Pied moniteur -->
         <rect x="935" y="528" width="50" height="14" rx="3" fill="#111120"/>
         <rect x="952" y="398" width="16" height="134" rx="4" fill="#0f0f1e"/>
-
-        <!-- Corps moniteur (bezel) -->
         <rect x="716" y="84" width="488" height="318" rx="12" fill="#0c0c1a"/>
-        <rect x="718" y="86" width="484" height="314" rx="10" fill="#0a0a16"/>
-
-        <!-- Écran actif — jeu en cours -->
-        <rect x="722" y="90" width="476" height="296" rx="6" fill="url(#screenGrad)" clip-path="url(#monitorClip)"/>
-
-        <!-- Bloom de l'écran sur le bureau -->
+        <rect x="722" y="90" width="476" height="296" rx="6" fill="url(#screenGrad)"/>
         <ellipse cx="960" cy="545" rx="200" ry="30" fill="#00e5ff" opacity="0.08" filter="url(#softGlow)"/>
-
-        <!-- Contenu écran : interface jeu sombre -->
         <g clip-path="url(#monitorClip)">
-          <!-- Ciel nocturne du jeu -->
           <rect x="722" y="90" width="476" height="200" fill="#020814"/>
-          <!-- Sol -->
           <rect x="722" y="290" width="476" height="96" fill="#060d05"/>
-
-          <!-- Étoiles -->
-          <circle cx="760" cy="110" r="0.8" fill="white" opacity="0.7"/>
-          <circle cx="810" cy="125" r="1" fill="white" opacity="0.9"/>
-          <circle cx="870" cy="105" r="0.6" fill="white" opacity="0.6"/>
-          <circle cx="930" cy="115" r="0.9" fill="white" opacity="0.8"/>
-          <circle cx="1000" cy="100" r="0.7" fill="white" opacity="0.7"/>
-          <circle cx="1060" cy="120" r="1.1" fill="white" opacity="0.9"/>
-          <circle cx="1120" cy="108" r="0.8" fill="white" opacity="0.6"/>
-          <circle cx="1160" cy="130" r="0.7" fill="white" opacity="0.8"/>
-          <circle cx="785" cy="145" r="0.6" fill="#00e5ff" opacity="0.8"/>
-          <circle cx="1090" cy="140" r="0.7" fill="#7c3aed" opacity="0.9"/>
-
-          <!-- Horizon lueur violet/cyan du jeu -->
+          <circle cx="810" cy="125" r="1" fill="white" opacity="0.9"/><circle cx="930" cy="115" r="0.9" fill="white" opacity="0.8"/><circle cx="1060" cy="120" r="1.1" fill="white" opacity="0.9"/>
           <ellipse cx="960" cy="295" rx="320" ry="60" fill="#00e5ff" opacity="0.04"/>
-          <ellipse cx="960" cy="295" rx="200" ry="35" fill="#7c3aed" opacity="0.06"/>
-
-          <!-- Silhouette ville futuriste -->
-          <rect x="722" y="220" width="28" height="75" fill="#030d08" opacity="0.95"/>
-          <rect x="738" y="205" width="16" height="90" fill="#041008" opacity="0.95"/>
-          <rect x="756" y="215" width="22" height="80" fill="#030d08" opacity="0.95"/>
           <rect x="780" y="195" width="18" height="100" fill="#041008" opacity="0.9"/>
-          <rect x="800" y="230" width="30" height="65" fill="#030d08" opacity="0.95"/>
-          <rect x="1070" y="218" width="25" height="77" fill="#030d08" opacity="0.95"/>
           <rect x="1097" y="200" width="18" height="95" fill="#041008" opacity="0.9"/>
-          <rect x="1117" y="222" width="26" height="73" fill="#030d08" opacity="0.95"/>
-          <rect x="1145" y="210" width="20" height="85" fill="#041008" opacity="0.95"/>
-          <rect x="1167" y="228" width="30" height="67" fill="#030d08" opacity="0.95"/>
-
-          <!-- Fenêtres lumineuses bâtiments -->
-          <rect x="742" y="212" width="3" height="3" fill="#00e5ff" opacity="0.7"/>
-          <rect x="748" y="218" width="3" height="3" fill="#7c3aed" opacity="0.6"/>
-          <rect x="785" y="205" width="3" height="3" fill="#00e5ff" opacity="0.8"/>
-          <rect x="785" y="212" width="3" height="3" fill="#ff6b35" opacity="0.5"/>
-          <rect x="1075" y="228" width="3" height="3" fill="#00e5ff" opacity="0.7"/>
-          <rect x="1075" y="235" width="3" height="3" fill="#00e5ff" opacity="0.5"/>
-          <rect x="1102" y="210" width="3" height="3" fill="#7c3aed" opacity="0.8"/>
-          <rect x="1150" y="218" width="3" height="3" fill="#ff6b35" opacity="0.6"/>
-
-          <!-- Personnage (silhouette soldat futuriste) -->
-          <!-- Corps -->
           <rect x="920" y="232" width="18" height="32" rx="3" fill="#0a2040"/>
-          <!-- Tête avec casque -->
           <ellipse cx="929" cy="228" rx="10" ry="11" fill="#0d2844"/>
-          <rect x="919" y="222" width="20" height="8" rx="3" fill="#0f3050"/>
-          <!-- Visière casque -->
           <rect x="921" y="224" width="16" height="5" rx="2" fill="#00e5ff" opacity="0.5"/>
-          <!-- Bras gauche avec arme -->
           <rect x="907" y="234" width="13" height="5" rx="2" fill="#0a2040"/>
           <rect x="897" y="233" width="12" height="4" rx="1" fill="#162d4a"/>
-          <!-- Bras droit -->
-          <rect x="938" y="234" width="10" height="5" rx="2" fill="#0a2040"/>
-          <!-- Jambes -->
-          <rect x="921" y="262" width="7" height="20" rx="2" fill="#0d2a48"/>
-          <rect x="929" y="262" width="7" height="20" rx="2" fill="#0a2040"/>
-          <!-- Lueur personnage -->
-          <ellipse cx="929" cy="250" rx="20" ry="28" fill="#00e5ff" opacity="0.07" filter="url(#tinyGlow)"/>
-
-          <!-- HUD jeu (interface) -->
-          <!-- Barre de vie -->
           <rect x="730" y="96" width="80" height="7" rx="3" fill="#0a1a0a" opacity="0.8"/>
           <rect x="730" y="96" width="58" height="7" rx="3" fill="#00ff88" opacity="0.85"/>
-          <text x="730" y="113" font-size="7" fill="#aaffcc" opacity="0.7" font-family="monospace">HP 58/80</text>
-          <!-- Mini map -->
-          <rect x="1155" y="92" width="38" height="38" rx="3" fill="#000d18" opacity="0.85"/>
-          <rect x="1155" y="92" width="38" height="38" rx="3" fill="none" stroke="#00e5ff" stroke-width="0.8" opacity="0.5"/>
-          <circle cx="1172" cy="108" r="2" fill="#00e5ff" opacity="0.9"/>
-          <circle cx="1165" cy="115" r="1.5" fill="#ff3366" opacity="0.8"/>
-          <circle cx="1180" cy="103" r="1.5" fill="#ff3366" opacity="0.8"/>
-          <!-- Crosshair centre écran -->
           <line x1="958" y1="225" x2="962" y2="225" stroke="#00ff88" stroke-width="1.2" opacity="0.9"/>
           <line x1="960" y1="223" x2="960" y2="227" stroke="#00ff88" stroke-width="1.2" opacity="0.9"/>
           <circle cx="960" cy="225" r="4" fill="none" stroke="#00ff88" stroke-width="0.8" opacity="0.7"/>
-          <!-- FPS counter -->
           <text x="1155" y="145" font-size="8" fill="#00e5ff" opacity="0.8" font-family="monospace">237 FPS</text>
-          <!-- Kills counter -->
-          <text x="730" y="145" font-size="7" fill="#ff6b35" opacity="0.8" font-family="monospace">⚡ 14 KILLS</text>
         </g>
-
-        <!-- Reflets sur le bezel -->
-        <rect x="722" y="90" width="476" height="2" rx="1" fill="#ffffff" opacity="0.06"/>
-        <rect x="722" y="90" width="2" height="296" rx="1" fill="#ffffff" opacity="0.04"/>
-
-        <!-- Logo monitor (petit) -->
-        <rect x="950" y="382" width="20" height="4" rx="2" fill="#1a1a30"/>
-
-        <!-- Lueur de l'écran projetée sur la pièce -->
-        <ellipse cx="960" cy="200" rx="250" ry="180" fill="#00e5ff" opacity="0.04" filter="url(#screenBloom)"/>
-
-        <!-- ═══════════════════════════════════ TOUR PC (boîtier) ═══════════════════════════════════ -->
-        <!-- Corps principal de la tour -->
         <rect x="870" y="224" width="160" height="350" rx="10" fill="url(#towerGrad)"/>
-        <!-- Panneau avant -->
-        <rect x="870" y="224" width="8" height="350" rx="4" fill="#111120"/>
-        <!-- Bords arrondis détail -->
-        <rect x="870" y="224" width="160" height="3" rx="2" fill="#1e1e35"/>
-        <rect x="870" y="571" width="160" height="3" rx="2" fill="#111120"/>
-
-        <!-- Panneau verre trempé -->
         <rect x="879" y="230" width="145" height="338" rx="8" fill="#050510" opacity="0.95"/>
         <rect x="879" y="230" width="145" height="338" rx="8" fill="url(#glassGrad)"/>
-        <!-- Reflet verre -->
-        <rect x="879" y="230" width="30" height="338" rx="8" fill="white" opacity="0.02"/>
-        <line x1="884" y1="230" x2="910" y2="568" stroke="white" stroke-width="0.5" opacity="0.04"/>
-
-        <!-- ═══ INTÉRIEUR PC visible à travers le verre ═══ -->
-        <!-- Lueur RGB intérieure principale -->
         <ellipse cx="952" cy="400" rx="65" ry="120" fill="#00e5ff" opacity="0.18" filter="url(#softGlow)"/>
-        <ellipse cx="952" cy="390" rx="45" ry="80" fill="#7c3aed" opacity="0.14" filter="url(#softGlow)"/>
-
-        <!-- Carte mère (visible en fond) -->
-        <rect x="888" y="245" width="128" height="165" rx="3" fill="#060d08" opacity="0.9"/>
-        <!-- Circuits carte mère -->
-        <line x1="895" y1="255" x2="1005" y2="255" stroke="#00ff88" stroke-width="0.6" opacity="0.4"/>
-        <line x1="895" y1="265" x2="1005" y2="265" stroke="#00ff88" stroke-width="0.4" opacity="0.3"/>
-        <line x1="895" y1="275" x2="960" y2="275" stroke="#00e5ff" stroke-width="0.5" opacity="0.35"/>
-        <line x1="905" y1="250" x2="905" y2="400" stroke="#00ff88" stroke-width="0.4" opacity="0.25"/>
-        <line x1="925" y1="250" x2="925" y2="360" stroke="#00e5ff" stroke-width="0.3" opacity="0.2"/>
-        <!-- Socket CPU -->
-        <rect x="895" y="252" width="42" height="42" rx="3" fill="#040c06" opacity="0.95"/>
-        <rect x="897" y="254" width="38" height="38" rx="2" fill="#060e08" opacity="0.9"/>
-        <!-- Condensateurs -->
-        <circle cx="952" cy="258" r="3" fill="#0d1f0d"/>
-        <circle cx="960" cy="258" r="3" fill="#0d1f0d"/>
-        <circle cx="968" cy="258" r="3" fill="#0d1f0d"/>
-        <circle cx="976" cy="258" r="3" fill="#0d1f0d"/>
-        <!-- Slots RAM (DDR5) -->
-        <rect x="942" y="252" width="6" height="55" rx="1" fill="#0a1a0a"/>
-        <rect x="942" y="252" width="6" height="55" rx="1" fill="#00e5ff" opacity="0.25"/>
-        <rect x="950" y="252" width="6" height="55" rx="1" fill="#0a1a0a"/>
-        <rect x="950" y="252" width="6" height="55" rx="1" fill="#7c3aed" opacity="0.2"/>
-        <rect x="958" y="252" width="6" height="55" rx="1" fill="#0a1a0a"/>
-        <rect x="958" y="252" width="6" height="55" rx="1" fill="#00e5ff" opacity="0.2"/>
-        <rect x="966" y="252" width="6" height="55" rx="1" fill="#0a1a0a"/>
-        <rect x="966" y="252" width="6" height="55" rx="1" fill="#7c3aed" opacity="0.15"/>
-
-        <!-- GPU (carte graphique) — gros composant -->
         <rect x="886" y="330" width="130" height="60" rx="5" fill="#0c0c1e"/>
-        <rect x="886" y="330" width="130" height="60" rx="5" fill="url(#gpuGrad)"/>
-        <!-- Shroud GPU -->
-        <rect x="888" y="332" width="126" height="56" rx="4" fill="#101025"/>
-        <!-- Ventilateurs GPU (3 fans) -->
-        <circle cx="914" cy="360" r="18" fill="#0a0a1a"/>
-        <circle cx="914" cy="360" r="14" fill="#0d0d20"/>
-        <circle cx="914" cy="360" r="10" fill="#0a0a1a"/>
-        <circle cx="914" cy="360" r="2.5" fill="#1a1a30"/>
-        <!-- Pales fan 1 -->
-        <path d="M914 348 Q918 354 914 360 Q910 354 914 348" fill="#151528" opacity="0.8"/>
-        <path d="M926 360 Q920 364 914 360 Q920 356 926 360" fill="#151528" opacity="0.8"/>
-        <path d="M914 372 Q910 366 914 360 Q918 366 914 372" fill="#151528" opacity="0.8"/>
-        <path d="M902 360 Q908 356 914 360 Q908 364 902 360" fill="#151528" opacity="0.8"/>
-
-        <circle cx="952" cy="360" r="18" fill="#0a0a1a"/>
-        <circle cx="952" cy="360" r="14" fill="#0d0d20"/>
-        <circle cx="952" cy="360" r="10" fill="#0a0a1a"/>
-        <circle cx="952" cy="360" r="2.5" fill="#1a1a30"/>
-        <path d="M952 348 Q956 354 952 360 Q948 354 952 348" fill="#151528" opacity="0.8"/>
-        <path d="M964 360 Q958 364 952 360 Q958 356 964 360" fill="#151528" opacity="0.8"/>
-        <path d="M952 372 Q948 366 952 360 Q956 366 952 372" fill="#151528" opacity="0.8"/>
-        <path d="M940 360 Q946 356 952 360 Q946 364 940 360" fill="#151528" opacity="0.8"/>
-
-        <circle cx="990" cy="360" r="18" fill="#0a0a1a"/>
-        <circle cx="990" cy="360" r="14" fill="#0d0d20"/>
-        <circle cx="990" cy="360" r="10" fill="#0a0a1a"/>
-        <circle cx="990" cy="360" r="2.5" fill="#1a1a30"/>
-        <path d="M990 348 Q994 354 990 360 Q986 354 990 348" fill="#151528" opacity="0.8"/>
-        <path d="M1002 360 Q996 364 990 360 Q996 356 1002 360" fill="#151528" opacity="0.8"/>
-        <path d="M990 372 Q986 366 990 360 Q994 366 990 372" fill="#151528" opacity="0.8"/>
-        <path d="M978 360 Q984 356 990 360 Q984 364 978 360" fill="#151528" opacity="0.8"/>
-
-        <!-- Bandeau RGB GPU -->
+        <circle cx="914" cy="360" r="18" fill="#0a0a1a"/><circle cx="914" cy="360" r="10" fill="#0a0a1a"/>
+        <circle cx="952" cy="360" r="18" fill="#0a0a1a"/><circle cx="952" cy="360" r="10" fill="#0a0a1a"/>
+        <circle cx="990" cy="360" r="18" fill="#0a0a1a"/><circle cx="990" cy="360" r="10" fill="#0a0a1a"/>
         <rect x="886" y="384" width="130" height="4" rx="2" fill="url(#rgbStrip1)" opacity="0.9" filter="url(#tinyGlow)"/>
-
-        <!-- Logo GPU (NVIDIA-style) -->
-        <rect x="992" y="335" width="20" height="10" rx="2" fill="#76b900" opacity="0.7"/>
-        <text x="993" y="343" font-size="6" fill="white" opacity="0.9" font-family="sans-serif" font-weight="bold">NVIDIA</text>
-
-        <!-- Refroidisseur CPU (AIO visible partiellement) -->
-        <rect x="888" y="245" width="50" height="50" rx="5" fill="#080f08" opacity="0.9"/>
-        <!-- Tête de pompe AIO -->
-        <circle cx="913" cy="270" r="20" fill="#0a120a"/>
-        <circle cx="913" cy="270" r="16" fill="#0c150c"/>
-        <circle cx="913" cy="270" r="12" fill="#080f08"/>
-        <circle cx="913" cy="270" r="6" fill="#00e5ff" opacity="0.3"/>
-        <!-- LCD pompe -->
-        <circle cx="913" cy="270" r="5" fill="#001a2e" opacity="0.9"/>
-        <text x="910" y="273" font-size="4" fill="#00e5ff" opacity="0.8" font-family="monospace">42°</text>
-
-        <!-- Tubes AIO -->
-        <path d="M900 260 Q880 240 880 230" stroke="#1a2a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M926 260 Q940 240 940 230" stroke="#1a2a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
-
-        <!-- SSD M.2 (visible) -->
-        <rect x="975" y="285" width="38" height="8" rx="2" fill="#0a1a08"/>
-        <rect x="975" y="285" width="38" height="8" rx="2" fill="#00ff88" opacity="0.08"/>
-        <!-- Puces SSD -->
-        <rect x="978" y="287" width="6" height="4" rx="1" fill="#0d200d"/>
-        <rect x="986" y="287" width="6" height="4" rx="1" fill="#0d200d"/>
-        <rect x="994" y="287" width="6" height="4" rx="1" fill="#0d200d"/>
-
-        <!-- Alimentation (PSU) en bas -->
-        <rect x="887" y="480" width="130" height="72" rx="5" fill="#0a0a1a"/>
-        <rect x="887" y="480" width="130" height="5" rx="2" fill="#111128"/>
-        <!-- Ventilateur PSU -->
-        <circle cx="930" cy="520" r="22" fill="#080810"/>
-        <circle cx="930" cy="520" r="18" fill="#0a0a14"/>
-        <circle cx="930" cy="520" r="14" fill="#080810"/>
-        <circle cx="930" cy="520" r="4" fill="#111125"/>
-        <!-- Grille PSU -->
-        <line x1="908" y1="520" x2="952" y2="520" stroke="#1a1a2e" stroke-width="1" opacity="0.6"/>
-        <line x1="930" y1="498" x2="930" y2="542" stroke="#1a1a2e" stroke-width="1" opacity="0.6"/>
-        <line x1="914" y1="504" x2="946" y2="536" stroke="#1a1a2e" stroke-width="0.8" opacity="0.4"/>
-        <line x1="946" y1="504" x2="914" y2="536" stroke="#1a1a2e" stroke-width="0.8" opacity="0.4"/>
-        <!-- Logo 80+ Gold -->
-        <rect x="960" y="510" width="48" height="16" rx="3" fill="#1a1500"/>
-        <text x="963" y="522" font-size="7" fill="#fbbf24" opacity="0.9" font-family="sans-serif" font-weight="bold">80+ GOLD</text>
-
-        <!-- ═══ STRIPS RGB BOÎTIER (côtés intérieurs) ═══ -->
-        <!-- Strip gauche intérieur -->
         <rect x="882" y="245" width="4" height="290" rx="2" fill="url(#rgbStrip2)" opacity="0.75" filter="url(#tinyGlow)"/>
-        <!-- Strip bas -->
         <rect x="886" y="558" width="126" height="4" rx="2" fill="url(#rgbStrip1)" opacity="0.7" filter="url(#tinyGlow)"/>
-        <!-- Strip droite intérieure -->
-        <rect x="1020" y="245" width="3" height="290" rx="2" fill="url(#rgbStrip2)" opacity="0.6" filter="url(#tinyGlow)"/>
-
-        <!-- Halo RGB projeté sur le bureau à travers le verre -->
         <ellipse cx="952" cy="574" rx="85" ry="14" fill="#00e5ff" opacity="0.12" filter="url(#softGlow)"/>
-        <ellipse cx="952" cy="574" rx="55" ry="10" fill="#7c3aed" opacity="0.10" filter="url(#softGlow)"/>
-
-        <!-- Bouton power (avant boîtier) -->
-        <circle cx="876" cy="240" r="5" fill="#0a0a16"/>
         <circle cx="876" cy="240" r="3.5" fill="#00e5ff" opacity="0.8" filter="url(#tinyGlow)"/>
-        <!-- LED HDD -->
-        <circle cx="876" cy="255" r="2" fill="#ff6b35" opacity="0.9" filter="url(#tinyGlow)"/>
-
-        <!-- ═══════════════════════════════════ CLAVIER ═══════════════════════════════════ -->
         <rect x="750" y="546" width="260" height="66" rx="7" fill="url(#kbGrad)"/>
-        <rect x="750" y="546" width="260" height="4" rx="3" fill="#1a1a30" opacity="0.7"/>
-        <!-- Touches clavier (rangées) -->
-        <!-- Rangée 1 -->
-        <g opacity="0.85">
-          <rect x="756" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="772" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="788" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="804" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="820" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="836" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="852" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="868" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="884" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="900" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="916" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="932" y="552" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="948" y="552" width="22" height="12" rx="2" fill="#111125"/>
-        </g>
-        <!-- Rangée 2 -->
-        <g opacity="0.85">
-          <rect x="756" y="566" width="20" height="12" rx="2" fill="#111125"/>
-          <rect x="778" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="794" y="566" width="14" height="12" rx="2" fill="#7c3aed" opacity="0.7"/>
-          <rect x="810" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="826" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="842" y="566" width="14" height="12" rx="2" fill="#00e5ff" opacity="0.5"/>
-          <rect x="858" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="874" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="890" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="906" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="922" y="566" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="938" y="566" width="32" height="12" rx="2" fill="#111125"/>
-        </g>
-        <!-- Rangée 3 (home row) -->
-        <g opacity="0.85">
-          <rect x="756" y="580" width="24" height="12" rx="2" fill="#111125"/>
-          <rect x="782" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="798" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="814" y="580" width="14" height="12" rx="2" fill="#ff6b35" opacity="0.6"/>
-          <rect x="830" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="846" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="862" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="878" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="894" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="910" y="580" width="14" height="12" rx="2" fill="#111125"/>
-          <rect x="926" y="580" width="44" height="12" rx="2" fill="#111125"/>
-        </g>
-        <!-- Barre espace -->
-        <rect x="808" y="594" width="110" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <!-- Touches restantes rangée bas -->
-        <rect x="756" y="594" width="20" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <rect x="778" y="594" width="14" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <rect x="794" y="594" width="12" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <rect x="920" y="594" width="12" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <rect x="934" y="594" width="14" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <rect x="950" y="594" width="20" height="12" rx="2" fill="#111125" opacity="0.85"/>
-        <!-- Strip RGB clavier dessous -->
         <rect x="750" y="609" width="260" height="3" rx="2" fill="url(#rgbStrip1)" opacity="0.8" filter="url(#tinyGlow)"/>
-        <!-- Reflet bureau sur clavier -->
-        <rect x="750" y="546" width="260" height="2" rx="1" fill="#ffffff" opacity="0.04"/>
-
-        <!-- ═══════════════════════════════════ SOURIS ═══════════════════════════════════ -->
-        <!-- Corps souris -->
-        <ellipse cx="1070" cy="572" rx="20" ry="32" fill="#0d0d20"/>
-        <ellipse cx="1070" cy="560" rx="18" ry="24" fill="#111128"/>
-        <!-- Scroll wheel -->
-        <rect x="1066" y="548" width="8" height="12" rx="3" fill="#1a1a30"/>
-        <rect x="1066" y="548" width="8" height="12" rx="3" fill="#00e5ff" opacity="0.25"/>
-        <!-- Ligne séparation boutons -->
-        <line x1="1070" y1="545" x2="1070" y2="575" stroke="#0a0a18" stroke-width="1.5"/>
-        <!-- LED souris dessous -->
-        <ellipse cx="1070" cy="595" rx="6" ry="4" fill="#7c3aed" opacity="0.5" filter="url(#tinyGlow)"/>
-        <!-- Fil souris -->
-        <path d="M1070 544 Q1070 525 1065 510 Q1060 498 1058 485" stroke="#0a0a14" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
-
-        <!-- ═══════════════════════════════════ CASQUE (sur le bureau) ═══════════════════════════════════ -->
-        <g transform="translate(1130, 480)">
-          <!-- Arc casque -->
-          <path d="M-30 40 Q-32 -10 0 -18 Q32 -10 30 40" stroke="#111125" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <path d="M-30 40 Q-32 -10 0 -18 Q32 -10 30 40" stroke="#1a1a35" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <!-- Coussinets -->
-          <ellipse cx="-30" cy="40" rx="10" ry="16" fill="#0d0d20"/>
-          <ellipse cx="-30" cy="40" rx="7" ry="12" fill="#111128"/>
-          <ellipse cx="30" cy="40" rx="10" ry="16" fill="#0d0d20"/>
-          <ellipse cx="30" cy="40" rx="7" ry="12" fill="#111128"/>
-          <!-- Strip RGB casque -->
-          <path d="M-22 40 Q-24 -6 0 -14 Q24 -6 22 40" stroke="url(#rgbStrip2)" stroke-width="2" fill="none" opacity="0.7" filter="url(#tinyGlow)"/>
-          <!-- Micro bras -->
-          <path d="M-30 45 Q-45 45 -48 35 Q-50 26 -44 24" stroke="#0d0d20" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <circle cx="-44" cy="24" r="4" fill="#1a1a30"/>
-          <circle cx="-44" cy="24" r="2" fill="#00e5ff" opacity="0.5" filter="url(#tinyGlow)"/>
-        </g>
-
-        <!-- ═══════════════════════════════════ TAPIS DE SOURIS ═══════════════════════════════════ -->
-        <rect x="720" y="536" width="390" height="70" rx="5" fill="#060608" opacity="0.7"/>
-        <rect x="720" y="536" width="390" height="70" rx="5" fill="none" stroke="#00e5ff" stroke-width="0.8" opacity="0.12"/>
-        <!-- Logo tapis (watermark) -->
-        <text x="870" y="578" font-size="9" fill="#1a1a30" font-family="sans-serif" font-weight="bold" opacity="0.5">GABHARDWARE</text>
-        <!-- Strip RGB bord tapis -->
-        <rect x="720" y="602" width="390" height="3" rx="2" fill="url(#rgbStrip1)" opacity="0.45" filter="url(#tinyGlow)"/>
-
-        <!-- ═══════════════════════════════════ BOISSON (Red Bull ou canette) ═══════════════════════════════════ -->
-        <rect x="1095" y="505" width="22" height="38" rx="5" fill="#1a0505"/>
-        <rect x="1095" y="505" width="22" height="38" rx="5" fill="#cc0000" opacity="0.7"/>
-        <rect x="1095" y="505" width="22" height="8" rx="5" fill="#880000" opacity="0.9"/>
-        <rect x="1095" y="535" width="22" height="8" rx="5" fill="#880000" opacity="0.9"/>
-        <text x="1097" y="526" font-size="5.5" fill="white" opacity="0.9" font-family="sans-serif" font-weight="bold">RED</text>
-        <text x="1096" y="533" font-size="5" fill="white" opacity="0.8" font-family="sans-serif">BULL</text>
-
-        <!-- ═══════════════════════════════════ LED AMBIANCE MURALE ═══════════════════════════════════ -->
-        <!-- Bande LED derrière le bureau (contre le mur) -->
         <rect x="620" y="533" width="800" height="6" rx="3" fill="url(#rgbStrip1)" opacity="0.35" filter="url(#softGlow)"/>
-        <!-- Halos muraux -->
-        <ellipse cx="700" cy="480" rx="80" ry="120" fill="#7c3aed" opacity="0.06" filter="url(#softGlow)"/>
-        <ellipse cx="1280" cy="460" rx="90" ry="140" fill="#00e5ff" opacity="0.05" filter="url(#softGlow)"/>
-
-        <!-- ═══════════════════════════════════ PARTICULES FLOTTANTES ═══════════════════════════════════ -->
-        <circle cx="700" cy="300" r="1.5" fill="#00e5ff" opacity="0.6">
-          <animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="300;280;300" dur="3s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="750" cy="200" r="1" fill="#7c3aed" opacity="0.7">
-          <animate attributeName="opacity" values="0.7;0.2;0.7" dur="4s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="200;185;200" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="680" cy="420" r="1.2" fill="#ff6b35" opacity="0.5">
-          <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="1200" cy="350" r="1.5" fill="#00e5ff" opacity="0.5">
-          <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3.5s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="350;330;350" dur="3.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="1250" cy="450" r="1" fill="#00ff88" opacity="0.6">
-          <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.8s" repeatCount="indefinite"/>
-        </circle>
-
-        <!-- RGB pulsation globale (très subtile) -->
-        <rect width="1400" height="800" fill="#00e5ff" opacity="0">
-          <animate attributeName="opacity" values="0;0.012;0" dur="2s" repeatCount="indefinite"/>
-        </rect>
+        <circle cx="700" cy="300" r="1.5" fill="#00e5ff" opacity="0.6"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" repeatCount="indefinite"/><animate attributeName="cy" values="300;280;300" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="1200" cy="350" r="1.5" fill="#00e5ff" opacity="0.5"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="3.5s" repeatCount="indefinite"/></circle>
       </svg>
     </div>
     <div class="hero-img-glow"></div>
-    <!-- Overlays existants (z-index 2) -->
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
-    <!-- Contenu -->
     <div class="hero-content">
       <div class="hero-badge"><span class="badge-dot"></span>NOUVEAUTÉS 2025 — RTX 5090 EN STOCK</div>
       <h1><span class="l1">CONSTRUIS TON</span><span class="l2">PC ULTIME</span><span class="l3">MAINTENANT</span></h1>
       <p class="hero-desc">Processeurs, cartes graphiques, RAM, stockage — tout le hardware qu'il te faut. Livraison express 24h, expertise réelle, prix compétitifs.</p>
       <div class="hero-ctas">
         <button class="btn-primary" onclick="showPage('catalog')">EXPLORER LE CATALOGUE →</button>
+        <button class="btn-secondary" onclick="openContactModal()">NOUS CONTACTER</button>
       </div>
     </div>
     <div class="hero-stats">
@@ -1299,7 +905,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
     </div>
   </section>
 
-  <!-- ===== SECTION MONTAGE PC avec envoi WhatsApp ===== -->
   <section class="section" id="montage" style="background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <div class="reveal">
       <div class="section-sub">// SERVICE SUR MESURE</div>
@@ -1307,93 +912,24 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
       <div class="montage-grid">
         <div class="montage-form">
           <form id="montageForm" onsubmit="sendToWhatsApp(event)">
-
-            <div class="form-group">
-              <label for="m-name">Votre Nom</label>
-              <input type="text" id="m-name" placeholder="Ex: Jean Dupont" required>
-            </div>
-
-            <div class="form-group">
-              <label for="m-email">Votre Email</label>
-              <input type="email" id="m-email" placeholder="Ex: jean.dupont@mail.com" required>
-            </div>
-
-            <div class="form-group">
-              <label for="m-phone">Votre Téléphone</label>
-              <input type="tel" id="m-phone" placeholder="Ex: 06 12 34 56 78" required>
-            </div>
-
-            <div class="form-group">
-              <label for="m-budget">Votre Budget (€)</label>
-              <input type="number" id="m-budget" placeholder="Ex: 1500" required>
-            </div>
-
-            <div class="form-group">
-              <label for="m-components">Composants Préférés</label>
-              <textarea id="m-components" rows="4" placeholder="Ex: RTX 5080, Ryzen 9, 32Go RAM..."></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="m-help">Besoin d'aide pour le choix ?</label>
-              <select id="m-help">
-                <option value="Non, j'ai déjà ma liste">Non, j'ai déjà ma liste</option>
-                <option value="Oui, conseillez-moi selon mon budget">Oui, conseillez-moi selon mon budget</option>
-                <option value="Partiellement, j'hésite sur certains points">Partiellement, j'hésite sur certains points</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="m-info">Informations supplémentaires</label>
-              <textarea id="m-info" rows="4" placeholder="Ex: PC pour montage vidéo, besoin d'un boîtier silencieux, RGB obligatoire, etc."></textarea>
-            </div>
-
-            <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">
-              💬 ENVOYER VIA WHATSAPP →
-            </button>
+            <div class="form-group"><label for="m-name">Votre Nom</label><input type="text" id="m-name" placeholder="Ex: Jean Dupont" required></div>
+            <div class="form-group"><label for="m-email">Votre Email</label><input type="email" id="m-email" placeholder="Ex: jean.dupont@mail.com" required></div>
+            <div class="form-group"><label for="m-phone">Votre Téléphone</label><input type="tel" id="m-phone" placeholder="Ex: 06 12 34 56 78" required></div>
+            <div class="form-group"><label for="m-budget">Votre Budget (€)</label><input type="number" id="m-budget" placeholder="Ex: 1500" required></div>
+            <div class="form-group"><label for="m-components">Composants Préférés</label><textarea id="m-components" rows="4" placeholder="Ex: RTX 5080, Ryzen 9, 32Go RAM..."></textarea></div>
+            <div class="form-group"><label for="m-help">Besoin d'aide pour le choix ?</label><select id="m-help"><option value="Non, j'ai déjà ma liste">Non, j'ai déjà ma liste</option><option value="Oui, conseillez-moi selon mon budget">Oui, conseillez-moi selon mon budget</option><option value="Partiellement, j'hésite sur certains points">Partiellement, j'hésite sur certains points</option></select></div>
+            <div class="form-group"><label for="m-info">Informations supplémentaires</label><textarea id="m-info" rows="4" placeholder="Ex: PC pour montage vidéo, boîtier silencieux, RGB obligatoire..."></textarea></div>
+            <button type="submit" class="btn-primary" style="width:100%;margin-top:10px;">💬 ENVOYER VIA WHATSAPP →</button>
           </form>
         </div>
-
         <div class="montage-contacts">
           <div class="section-sub">// NOUS CONTACTER</div>
-          <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:24px; margin-bottom:24px; color:var(--text);">BESOIN D'ASSISTANCE ?</h3>
-          <p style="color:var(--text2); font-size:14px; line-height:1.6; margin-bottom:32px;">Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions techniques ou commerciales.</p>
-
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div class="contact-info">
-              <div class="contact-label">Téléphone</div>
-              <div class="contact-value">+241 076 545 956</div>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-info">
-              <div class="contact-label">Email</div>
-              <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="432d22372b222d2c34222d2422717a7303242e222a2f6d202c2e">[email&#160;protected]</a></div>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">💬</div>
-            <div class="contact-info">
-              <div class="contact-label">WhatsApp direct</div>
-              <div class="contact-value">
-                <a href="https://wa.me/241076545956" target="_blank" rel="noopener"
-                   style="color:var(--green);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">
-                  Ouvrir WhatsApp →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-item" style="margin-top:8px;">
-            <div class="contact-icon">🕐</div>
-            <div class="contact-info">
-              <div class="contact-label">Horaires</div>
-              <div class="contact-value" style="font-size:15px;">7j/7 · 09h00 – 19h00</div>
-            </div>
-          </div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:24px;color:var(--text);">BESOIN D'ASSISTANCE ?</h3>
+          <p style="color:var(--text2);font-size:14px;line-height:1.6;margin-bottom:32px;">Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions techniques ou commerciales.</p>
+          <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-info"><div class="contact-label">Téléphone</div><div class="contact-value">+241 076 545 956</div></div></div>
+          <div class="contact-item"><div class="contact-icon">✉️</div><div class="contact-info"><div class="contact-label">Email</div><div class="contact-value">nathanowanga290@gmail.com</div></div></div>
+          <div class="contact-item"><div class="contact-icon">💬</div><div class="contact-info"><div class="contact-label">WhatsApp direct</div><div class="contact-value"><a href="https://wa.me/241076545956" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Ouvrir WhatsApp →</a></div></div></div>
+          <div class="contact-item"><div class="contact-icon">🕐</div><div class="contact-info"><div class="contact-label">Horaires</div><div class="contact-value" style="font-size:15px;">7j/7 · 09h00 – 19h00</div></div></div>
         </div>
       </div>
     </div>
@@ -1418,26 +954,10 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
 
   <section class="section" style="background:var(--bg2);padding-top:0;">
     <div class="features-grid reveal">
-      <div class="feature-item">
-        <div class="feature-icon">🚀</div>
-        <div class="feature-title">Livraison Express</div>
-        <div class="feature-desc">Expédition sous 24h. Livraison offerte dès 99€. Suivi en temps réel.</div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🛡️</div>
-        <div class="feature-title">Garantie Étendue</div>
-        <div class="feature-desc">Tous nos produits garantis 2 ans minimum. Extension jusqu'à 5 ans.</div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🔧</div>
-        <div class="feature-title">Support Expert</div>
-        <div class="feature-desc">Équipe technique disponible 7j/7 pour vos choix et configurations.</div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">↩️</div>
-        <div class="feature-title">Retour 30 Jours</div>
-        <div class="feature-desc">Retour gratuit sous 30 jours. Remboursement ou échange rapide.</div>
-      </div>
+      <div class="feature-item"><div class="feature-icon">🚀</div><div class="feature-title">Livraison Express</div><div class="feature-desc">Expédition sous 24h. Livraison offerte dès 99€. Suivi en temps réel.</div></div>
+      <div class="feature-item"><div class="feature-icon">🛡️</div><div class="feature-title">Garantie Étendue</div><div class="feature-desc">Tous nos produits garantis 2 ans minimum. Extension jusqu'à 5 ans.</div></div>
+      <div class="feature-item"><div class="feature-icon">🔧</div><div class="feature-title">Support Expert</div><div class="feature-desc">Équipe technique disponible 7j/7 pour vos choix et configurations.</div></div>
+      <div class="feature-item"><div class="feature-icon">↩️</div><div class="feature-title">Retour 30 Jours</div><div class="feature-desc">Retour gratuit sous 30 jours. Remboursement ou échange rapide.</div></div>
     </div>
   </section>
 
@@ -1446,7 +966,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
       <div><div class="footer-logo">GAB<span>HARDWARE</span></div><p class="footer-desc">Votre destination hardware depuis 2010. Composants PC, périphériques et accessoires tech haut de gamme.</p><div class="footer-socials"><div class="social-btn">𝕏</div><div class="social-btn">in</div><div class="social-btn">▶</div><div class="social-btn">📷</div></div></div>
       <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a onclick="showPage('catalog')">Catalogue complet</a></li><li><a onclick="showCat('GPU')">Cartes Graphiques</a></li><li><a onclick="showCat('CPU')">Processeurs</a></li><li><a onclick="showCat('RAM')">RAM</a></li><li><a onclick="showCat('SSD')">Stockage</a></li><li><a onclick="goSection('montage')">Montage PC</a></li></ul></div>
       <div><div class="footer-col-title">Informations</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Livraison & Retours</a></li><li><a href="#">Garantie</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">CGV</a></li></ul></div>
-      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="/cdn-cgi/l/email-protection#ee808f9a868f8081998f80898fdcd7deae89838f8782c08d8183">📧 <span class="__cf_email__" data-cfemail="9ff1feebf7fef1f0e8fef1f8feada6afdff8f2fef6f3b1fcf0f2">[email&#160;protected]</span></a></li><li><a href="tel:+241076545956">📞 +241 076 545 956</a></li><li><a href="#">📍 Libreville, GABON</a></li><li><a href="#">FAQ</a></li><li><a href="https://wa.me/241076545956" target="_blank">💬 WhatsApp</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:nathanowanga290@gmail.com">📧 nathanowanga290@gmail.com</a></li><li><a href="tel:+241076545956">📞 +241 076 545 956</a></li><li><a href="#">📍 Libreville, GABON</a></li><li><a href="#">FAQ</a></li><li><a href="https://wa.me/241076545956" target="_blank">💬 WhatsApp</a></li></ul></div>
     </div>
     <div class="footer-bottom"><div class="footer-copy">© 2025 GABHARDWARE — TOUS DROITS RÉSERVÉS</div><div class="footer-pays"><span class="pay-badge">VISA</span><span class="pay-badge">MASTERCARD</span><span class="pay-badge">PAYPAL</span><span class="pay-badge">ALMA</span><span class="pay-badge">VIREMENT</span></div></div>
   </footer>
@@ -1460,7 +980,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
     <p style="color:var(--text2);font-size:14px;margin-top:4px;">Catalogue complet — <span id="catalogCountHero" style="color:var(--accent);font-family:'Share Tech Mono',monospace;"></span></p>
   </div>
   <div class="catalog-layout">
-    <div class="catalog-sidebar">
+    <div class="catalog-sidebar" id="catalogSidebar">
       <div class="filter-section">
         <div class="filter-title">Catégorie</div>
         <div class="filter-option"><input type="checkbox" id="f-ALL" checked onchange="onFilterChange('ALL')"><label for="f-ALL">Tous les produits</label></div>
@@ -1502,6 +1022,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
       <button class="filter-reset" onclick="resetFilters()">✕ RÉINITIALISER LES FILTRES</button>
     </div>
     <div>
+      <button class="mobile-filter-btn" onclick="toggleMobileFilters()">⚙️ FILTRES &amp; TRI</button>
       <div class="catalog-toolbar">
         <div class="catalog-count"><span id="catalogCount">0</span> produits trouvés</div>
         <div class="catalog-sort">
@@ -1527,14 +1048,11 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
 
 <!-- BLOG PAGE -->
 <div class="page" id="page-blog">
-
   <div class="blog-hero">
     <div class="section-sub">// GABHARDWARE MAGAZINE</div>
     <h1>LE <span>BLOG</span> TECH</h1>
     <p>Guides, tests, comparatifs et actualités hardware — tout pour faire les meilleurs choix.</p>
   </div>
-
-  <!-- Filtres catégories -->
   <div class="blog-filters">
     <button class="blog-filter-btn active" onclick="filterBlog('all',this)">Tous</button>
     <button class="blog-filter-btn" onclick="filterBlog('guide',this)">Guides</button>
@@ -1543,718 +1061,169 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:60px 32p
     <button class="blog-filter-btn" onclick="filterBlog('conseil',this)">Conseils</button>
     <button class="blog-filter-btn" onclick="filterBlog('comparatif',this)">Comparatifs</button>
   </div>
-
   <div class="blog-layout">
-    <!-- Grille articles -->
     <div>
       <div class="blog-grid" id="blogGrid"></div>
     </div>
-
-    <!-- Sidebar -->
     <div class="blog-sidebar">
-      <!-- Top articles -->
       <div class="blog-widget">
         <div class="blog-widget-title">// Top Articles</div>
         <div id="blogTopList"></div>
       </div>
-      <!-- Tags -->
       <div class="blog-widget">
         <div class="blog-widget-title">// Tags Populaires</div>
         <div class="blog-tag-cloud">
-          <span class="blog-tag" onclick="filterBlog('guide',document.querySelector('.blog-filter-btn:nth-child(2)'))">RTX 5090</span>
-          <span class="blog-tag">DDR5</span>
-          <span class="blog-tag">PCIe 5.0</span>
-          <span class="blog-tag">Gaming</span>
-          <span class="blog-tag">Overclock</span>
-          <span class="blog-tag">Refroidissement</span>
-          <span class="blog-tag">4K</span>
-          <span class="blog-tag">240Hz</span>
-          <span class="blog-tag">OLED</span>
-          <span class="blog-tag">Build 2025</span>
-          <span class="blog-tag">AMD vs Intel</span>
-          <span class="blog-tag">NVMe</span>
-          <span class="blog-tag">RGB</span>
-          <span class="blog-tag">Budget</span>
+          <span class="blog-tag">RTX 5090</span><span class="blog-tag">DDR5</span><span class="blog-tag">PCIe 5.0</span>
+          <span class="blog-tag">Gaming</span><span class="blog-tag">Overclock</span><span class="blog-tag">Refroidissement</span>
+          <span class="blog-tag">4K</span><span class="blog-tag">240Hz</span><span class="blog-tag">OLED</span>
+          <span class="blog-tag">Build 2025</span><span class="blog-tag">AMD vs Intel</span><span class="blog-tag">NVMe</span>
+          <span class="blog-tag">RGB</span><span class="blog-tag">Budget</span>
         </div>
       </div>
-      <!-- Newsletter -->
       <div class="blog-widget" style="background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(124,58,237,.06));border-color:rgba(0,229,255,.2);">
         <div class="blog-widget-title">// Newsletter</div>
         <p style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:14px;">Reçois chaque semaine les meilleures actus hardware directement dans ta boîte mail.</p>
         <input type="email" placeholder="ton@email.com" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:9px 12px;font-family:'Barlow',sans-serif;font-size:13px;outline:none;border-radius:2px;margin-bottom:8px;">
-        <button class="btn-primary" style="width:100%;font-size:11px;" onclick="toast('✓ Tu es bien <span>inscrit</span> à la newsletter !')">S\'ABONNER →</button>
+        <button class="btn-primary" style="width:100%;font-size:11px;" onclick="toast('✓ Tu es bien <span>inscrit</span> à la newsletter !')">S'ABONNER →</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// ===== THEME TOGGLE =====
-// ===== THEME TOGGLE =====
-function toggleTheme() {
-  const html = document.documentElement;
-  const current = html.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', next);
-  localStorage.setItem('gabhw-theme', next);
-}
-(function(){
-  const saved = localStorage.getItem('gabhw-theme');
-  if(saved) document.documentElement.setAttribute('data-theme', saved);
-})();
+// ===== THEME =====
+function toggleTheme(){const h=document.documentElement;const n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('gabhw-theme',n);}
+(function(){const s=localStorage.getItem('gabhw-theme');if(s)document.documentElement.setAttribute('data-theme',s);})();
+
+// ===== MOBILE NAV =====
+function toggleMobileNav(){const n=document.getElementById('mobileNav');const h=document.getElementById('navHamburger');n.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.getElementById('navHamburger').classList.remove('open');document.body.style.overflow='';}
+
+// ===== MOBILE FILTERS =====
+function toggleMobileFilters(){const sb=document.getElementById('catalogSidebar');sb.classList.toggle('show');const btn=document.querySelector('.mobile-filter-btn');btn.textContent=sb.classList.contains('show')?'✕ FERMER LES FILTRES':'⚙️ FILTRES & TRI';}
+
+// ===== RESPONSIVE =====
+function applyResponsive(){const m=window.innerWidth<=768;const fb=document.querySelector('.mobile-filter-btn');if(fb)fb.style.display=m?'flex':'none';const cl=document.querySelector('.cart-label-full');if(cl)cl.style.display=m?'none':'inline';}
+window.addEventListener('resize',applyResponsive);
 
 // ===== PRODUCTS DATA =====
 const P = [
-  {id:1,cat:'GPU',brand:'NVIDIA',name:'GeForce RTX 5090 32GB GDDR7',short:'32Go GDDR7 · PCIe 5.0 · 575W · DLSS 4',price:1999,old:null,badge:'new',stock:'in',rating:4.9,rev:312,
-   img:'5090.png',
-   specs:[['Mémoire','32 Go GDDR7'],['Interface','PCIe 5.0 x16'],['TDP','575W'],['Connecteurs','4x PCIe 16-pin'],['Sorties','3x DP 2.1, 1x HDMI 2.1'],['DLSS','4.0 Frame Generation']]},
-  {id:2,cat:'GPU',brand:'NVIDIA',name:'GeForce RTX 5080 16GB GDDR7',short:'16Go GDDR7 · PCIe 5.0 · 320W · DLSS 4',price:1199,old:1429,badge:'promo',stock:'in',rating:4.8,rev:287,
-   img:'5080.png',
-   specs:[['Mémoire','16 Go GDDR7'],['Interface','PCIe 5.0 x16'],['TDP','320W'],['Sorties','3x DP 2.1, 1x HDMI 2.1'],['Perf','4K Ultra']]},
-  {id:3,cat:'GPU',brand:'AMD',name:'Radeon RX 9070 XT 16GB',short:'16Go GDDR6 · PCIe 5.0 · 304W · FSR 4',price:699,old:null,badge:'new',stock:'in',rating:4.7,rev:198,
-   img:'9070xt.png',
-   specs:[['Mémoire','16 Go GDDR6'],['Interface','PCIe 5.0 x16'],['TDP','304W'],['Technologie','AMD FSR 4'],['Sorties','2x DP 2.1, 2x HDMI 2.1']]},
-  {id:4,cat:'GPU',brand:'NVIDIA',name:'GeForce RTX 4070 Super 12GB',short:'12Go GDDR6X · PCIe 4.0 · 220W · 1440p',price:569,old:649,badge:'promo',stock:'in',rating:4.8,rev:445,
-   img:'super.png',
-   specs:[['Mémoire','12 Go GDDR6X'],['Interface','PCIe 4.0 x16'],['TDP','220W'],['Idéal','1440p Ultra']]},
-  {id:5,cat:'GPU',brand:'AMD',name:'Radeon RX 7900 XTX 24GB',short:'24Go GDDR6 · PCIe 4.0 · 355W · 4K',price:849,old:999,badge:'promo',stock:'low',rating:4.6,rev:223,
-   img:'xtx.png',
-   specs:[['Mémoire','24 Go GDDR6'],['Interface','PCIe 4.0 x16'],['TDP','355W'],['Idéal','4K Ultra']]},
-  {id:6,cat:'CPU',brand:'AMD',name:'Ryzen 9 9950X 16 Cœurs',short:'16C/32T · 5.7 GHz Boost · AM5 · 170W',price:629,old:769,badge:'promo',stock:'in',rating:4.9,rev:534,
-   img:'r9.png',
-   specs:[['Cœurs/Threads','16C / 32T'],['Fréquence Boost','5.7 GHz'],['Cache L3','64 Mo'],['Socket','AM5'],['TDP','170W'],['Mémoire','DDR5-5600']]},
-  {id:7,cat:'CPU',brand:'Intel',name:'Core Ultra 9 285K 24 Cœurs',short:'24C/24T · 5.7 GHz · LGA1851 · 125W',price:589,old:null,badge:'new',stock:'in',rating:4.8,rev:312,
-   img:'core.png',
-   specs:[['Cœurs','24 (8P+16E)'],['Fréquence Boost','5.7 GHz'],['Cache L3','36 Mo'],['Socket','LGA1851'],['TDP','125W'],['Mémoire','DDR5-6400']]},
-  {id:8,cat:'CPU',brand:'AMD',name:'Ryzen 7 9700X 8 Cœurs',short:'8C/16T · 5.5 GHz · AM5 · 65W',price:329,old:null,badge:null,stock:'in',rating:4.7,rev:678,
-   img:'r7.png',
-   specs:[['Cœurs/Threads','8C / 16T'],['Fréquence Boost','5.5 GHz'],['Cache L3','32 Mo'],['Socket','AM5'],['TDP','65W']]},
-  {id:9,cat:'CPU',brand:'Intel',name:'Core i5-14600K 14 Cœurs',short:'14C/20T · 5.3 GHz · LGA1700 · 125W',price:279,old:329,badge:'promo',stock:'in',rating:4.8,rev:892,
-   img:'i5.png',
-   specs:[['Cœurs','14 (6P+8E)'],['Fréquence Boost','5.3 GHz'],['Cache L3','24 Mo'],['Socket','LGA1700'],['TDP','125W']]},
-  {id:10,cat:'CPU',brand:'AMD',name:'Ryzen 5 7600X 6 Cœurs',short:'6C/12T · 5.3 GHz · AM5 · 105W',price:189,old:249,badge:'promo',stock:'in',rating:4.6,rev:1024,
-   img:'r5.png',
-   specs:[['Cœurs/Threads','6C / 12T'],['Fréquence Boost','5.3 GHz'],['Socket','AM5'],['TDP','105W']]},
-  {id:11,cat:'CPU',brand:'Intel',name:'Core Ultra 5 245K 14 Cœurs',short:'14C · 5.2 GHz · LGA1851 · 125W',price:319,old:null,badge:'new',stock:'in',rating:4.5,rev:156,
-   img:'i5.png',
-   specs:[['Cœurs','14 (6P+8E)'],['Fréquence Boost','5.2 GHz'],['Socket','LGA1851'],['TDP','125W']]},
-  {id:12,cat:'MB',brand:'ASUS',name:'ROG Maximus Z890 Hero WiFi',short:'Intel Z890 · DDR5 · PCIe 5.0 · WiFi 7',price:599,old:null,badge:'new',stock:'in',rating:4.7,rev:89,
-   img:'mb1.png',
-   specs:[['Chipset','Intel Z890'],['Format','ATX'],['Slots DDR5','4x (max 192Go)'],['PCIe 5.0','2x x16'],['WiFi','WiFi 7 (BE)'],['USB','4x USB 3.2 Gen 2x2']]},
-  {id:13,cat:'MB',brand:'MSI',name:'MEG X870E ACE WiFi 7',short:'AMD X870E · DDR5 · PCIe 5.0 · WiFi 7',price:499,old:null,badge:'new',stock:'in',rating:4.8,rev:124,
-   img:'mb2.png',
-   specs:[['Chipset','AMD X870E'],['Format','E-ATX'],['Slots DDR5','4x (max 256Go)'],['WiFi','WiFi 7 (BE)'],['Phases VRM','22+2+2']]},
-  {id:14,cat:'MB',brand:'ASUS',name:'PRIME B650-PLUS DDR5',short:'AMD B650 · DDR5 · PCIe 4.0 · M.2 x4',price:189,old:219,badge:'promo',stock:'in',rating:4.5,rev:342,
-   img:'mb3.png',
-   specs:[['Chipset','AMD B650'],['Format','ATX'],['Slots DDR5','4x (max 128Go)'],['M.2','4x NVMe PCIe 4.0']]},
-  {id:15,cat:'RAM',brand:'Corsair',name:'Vengeance DDR5 64Go 6400MHz',short:'2x32Go · CL32 · XMP 3.0 · RGB',price:169,old:219,badge:'promo',stock:'in',rating:4.6,rev:567,
-   img:'ram1.png',
-   specs:[['Capacité','2x 32 Go'],['Fréquence','6400 MHz'],['Latence','CL32-39-39-76'],['Voltage','1.4V'],['Profil','XMP 3.0'],['RGB','Oui']]},
-  {id:16,cat:'RAM',brand:'G.Skill',name:'Trident Z5 RGB 32Go 7200MHz',short:'2x16Go · CL34 · XMP 3.0 · RGB',price:139,old:null,badge:'top',stock:'in',rating:4.9,rev:423,
-   img:'ram2.png',
-   specs:[['Capacité','2x 16 Go'],['Fréquence','7200 MHz'],['Latence','CL34'],['Profil','XMP 3.0 / EXPO'],['RGB','Oui']]},
-  {id:17,cat:'RAM',brand:'Kingston',name:'Fury Beast DDR5 32Go 5600MHz',short:'2x16Go · CL36 · DDR5-5600 · Expo',price:79,old:99,badge:'promo',stock:'in',rating:4.4,rev:789,
-   img:'ddr4.png',
-   specs:[['Capacité','2x 16 Go'],['Fréquence','5600 MHz'],['Latence','CL36'],['Profil','EXPO / XMP']]},
-  {id:18,cat:'SSD',brand:'Samsung',name:'990 Pro NVMe 2To M.2',short:'7 450 Mo/s lect · PCIe 4.0 · 1200 TBW',price:149,old:null,badge:'top',stock:'in',rating:4.9,rev:1247,
-   img:'990.png',
-   specs:[['Capacité','2 To'],['Interface','PCIe 4.0 x4 NVMe'],['Lecture','7 450 Mo/s'],['Écriture','6 900 Mo/s'],['Endurance','1 200 TBW'],['Format','M.2 2280']]},
-  {id:19,cat:'SSD',brand:'WD',name:'Black SN850X 4To NVMe',short:'7 300 Mo/s · PCIe 4.0 · Gaming',price:289,old:349,badge:'promo',stock:'in',rating:4.8,rev:567,
-   img:'ssd1.png',
-   specs:[['Capacité','4 To'],['Lecture','7 300 Mo/s'],['Écriture','6 600 Mo/s'],['Interface','PCIe 4.0 x4']]},
-  {id:20,cat:'SSD',brand:'Crucial',name:'T700 2To PCIe 5.0 NVMe',short:'12 400 Mo/s · PCIe 5.0 · Dissipateur',price:219,old:null,badge:'new',stock:'in',rating:4.7,rev:234,
-   img:'ssd2.png',
-   specs:[['Capacité','2 To'],['Interface','PCIe 5.0 x4 NVMe'],['Lecture','12 400 Mo/s'],['Écriture','11 800 Mo/s'],['Format','M.2 + dissipateur']]},
-  {id:21,cat:'SSD',brand:'Samsung',name:'870 EVO 4To SATA',short:'560 Mo/s · SATA III · Grand stockage',price:229,old:279,badge:null,stock:'in',rating:4.7,rev:2341,
-   img:'hdd.png',
-   specs:[['Capacité','4 To'],['Interface','SATA III'],['Lecture','560 Mo/s'],['Écriture','530 Mo/s']]},
-  {id:22,cat:'PSU',brand:'be quiet!',name:'Dark Power 13 1000W Titanium',short:'1000W · 80+ Titanium · Modulaire',price:229,old:null,badge:'top',stock:'in',rating:4.9,rev:445,
-   img:'alim1.png',
-   specs:[['Puissance','1 000 W'],['Certification','80+ Titanium'],['Câbles','Modulaire'],['Ventilateur','135mm'],['Connecteurs GPU','2x 12V-2x6'],['Garantie','10 ans']]},
-  {id:23,cat:'PSU',brand:'Corsair',name:'RM1000x SHIFT 1000W Gold',short:'1000W · 80+ Gold · Side-Connect',price:179,old:209,badge:'promo',stock:'in',rating:4.7,rev:312,
-   img:'alim2.png',
-   specs:[['Puissance','1 000 W'],['Certification','80+ Gold'],['Innovation','Connecteurs latéraux'],['Garantie','7 ans']]},
-  {id:24,cat:'COOL',brand:'Corsair',name:'iCUE H150i RGB Elite 360mm',short:'AIO 360mm · Triple 120mm ARGB · LCD',price:199,old:null,badge:null,stock:'low',rating:4.6,rev:678,
-   img:'cf.png',
-   specs:[['Type','AIO Liquid Cooling'],['Radiateur','360mm'],['Ventilateurs','3x 120mm ARGB'],['Écran pompe','LCD 2.1"'],['Compatibilité','AM4/AM5/LGA1700/1851'],['Garantie','5 ans']]},
-  {id:25,cat:'COOL',brand:'Noctua',name:'NH-D15 G2 Chromax.Black',short:'2x 140mm NF-A15 · 250W TDP · Air',price:119,old:null,badge:null,stock:'in',rating:4.9,rev:1567,
-   img:'vt.png',
-   specs:[['Type','Air Cooling Dual Tower'],['Ventilateurs','2x 140mm NF-A15'],['TDP Max','250W'],['Hauteur','165mm'],['Garantie','6 ans']]},
-  {id:26,cat:'COOL',brand:'ASUS',name:'ROG Ryujin III 360 ARGB',short:'AIO 360mm · 3x 120mm ARGB · LCD 3.5"',price:279,old:329,badge:'promo',stock:'in',rating:4.7,rev:234,
-   img:'rog.png',
-   specs:[['Type','AIO 360mm'],['Écran pompe','LCD 3.5"'],['Ventilateurs','3x 120mm ARGB'],['Logiciel','Armory Crate']]},
-  {id:27,cat:'CASE',brand:'Lian Li',name:'O11 Dynamic EVO XL Tower',short:'Full Tower · ARGB · E-ATX · Verre Trempé',price:189,old:null,badge:'top',stock:'low',rating:4.9,rev:892,
-   img:'tw.png',
-   specs:[['Format','Full Tower'],['Compatibilité','E-ATX, ATX, mATX'],['Baies ventilateurs','11x 120mm max'],['Verre trempé','3 faces'],['Dimensions','541×285×531mm']]},
-  {id:28,cat:'CASE',brand:'Fractal',name:'Torrent Compact RGB TG',short:'Mid Tower · Airflow · 2x 140mm',price:129,old:149,badge:null,stock:'in',rating:4.8,rev:567,
-   img:'cp.png',
-   specs:[['Format','Mid Tower'],['Ventilateurs inclus','3x (2x140 + 1x120)'],['Compatibilité','ATX, mATX, ITX'],['Verre trempé','Face avant + latérale']]},
-  {id:29,cat:'PERI',brand:'Logitech',name:'G Pro X Superlight 2 DEX',short:'34g · Capteur HERO 2 · 32000 DPI',price:159,old:null,badge:'new',stock:'in',rating:4.9,rev:789,
-   img:'gt.png',
-   specs:[['Poids','34g'],['Capteur','HERO 2'],['DPI','100 - 32 000'],['Autonomie','300h'],['Connectivité','Sans fil 2.4 GHz'],['Boutons','5 programmables']]},
-  {id:30,cat:'PERI',brand:'Corsair',name:'K70 RGB Pro MX Red',short:'Cherry MX Red · PBT Double Shot · USB-C',price:129,old:159,badge:'promo',stock:'in',rating:4.7,rev:1024,
-   img:'k70.png',
-   specs:[['Switches','Cherry MX Red'],['Touches','PBT Double Shot'],['Châssis','Aluminium brushed'],['Rétroéclairage','RGB par touche'],['Connectivité','USB-C détachable']]},
-  {id:31,cat:'PERI',brand:'Logitech',name:'G502 X Plus Hero 25K',short:'89g · HERO 25K · 7 boutons · LightSpeed',price:99,old:129,badge:'promo',stock:'in',rating:4.8,rev:1567,
-   img:'sr.png',
-   specs:[['Poids','89g'],['Capteur','HERO 25K'],['DPI','100 - 25 600'],['Autonomie','130h'],['Boutons','7 programmables']]},
-  {id:32,cat:'PERI',brand:'SteelSeries',name:'Arctis Nova Pro Wireless',short:'Hi-Res · DAC + EQ · PS5/PC · 22h',price:279,old:329,badge:null,stock:'in',rating:4.7,rev:456,
-   img:'cs2.png',
-   specs:[['Connexion','2x 2.4 GHz / BT'],['Réponse fréq.','10-40 000 Hz'],['DAC','Inclus + égaliseur'],['Autonomie','22h + 22h'],['Micro','ClearCast rétractable']]},
-  {id:33,cat:'MON',brand:'ASUS',name:'ROG Swift PG279QM 27" 240Hz',short:'27" IPS · 2560x1440 · 240Hz · G-Sync',price:699,old:799,badge:'promo',stock:'in',rating:4.8,rev:312,
-   img:'asus.png',
-   specs:[['Taille','27"'],['Résolution','2560×1440 (WQHD)'],['Dalle','IPS'],['Fréquence','240 Hz'],['Temps réponse','1ms GtG'],['HDR','DisplayHDR 600'],['Sync','G-Sync Ultimate']]},
-  {id:34,cat:'MON',brand:'LG',name:'UltraGear 27GR95QE OLED 240Hz',short:'26.5" OLED · 2560x1440 · 240Hz · 0.03ms',price:799,old:949,badge:'promo',stock:'low',rating:4.9,rev:234,
-   img:'lg.png',
-   specs:[['Taille','26.5"'],['Résolution','2560×1440'],['Dalle','OLED'],['Fréquence','240 Hz'],['Temps réponse','0.03ms']]},
-  {id:35,cat:'MON',brand:'Samsung',name:'Odyssey G9 OLED 49" 240Hz',short:'49" OLED Curved · 5120x1440 · 240Hz',price:1399,old:1599,badge:null,stock:'in',rating:4.7,rev:156,
-   img:'ads.png',
-   specs:[['Taille','49"'],['Résolution','5120×1440 (DQHD)'],['Dalle','OLED Curved'],['Fréquence','240 Hz'],['Courbure','1800R']]}
+  {id:1,cat:'GPU',brand:'NVIDIA',name:'GeForce RTX 5090 32GB GDDR7',short:'32Go GDDR7 · PCIe 5.0 · 575W · DLSS 4',price:1999,old:null,badge:'new',stock:'in',rating:4.9,rev:312,img:'5090.png',specs:[['Mémoire','32 Go GDDR7'],['Interface','PCIe 5.0 x16'],['TDP','575W'],['Connecteurs','4x PCIe 16-pin'],['Sorties','3x DP 2.1, 1x HDMI 2.1'],['DLSS','4.0 Frame Generation']]},
+  {id:2,cat:'GPU',brand:'NVIDIA',name:'GeForce RTX 5080 16GB GDDR7',short:'16Go GDDR7 · PCIe 5.0 · 320W · DLSS 4',price:1199,old:1429,badge:'promo',stock:'in',rating:4.8,rev:287,img:'5080.png',specs:[['Mémoire','16 Go GDDR7'],['Interface','PCIe 5.0 x16'],['TDP','320W'],['Sorties','3x DP 2.1, 1x HDMI 2.1'],['Perf','4K Ultra']]},
+  {id:3,cat:'GPU',brand:'AMD',name:'Radeon RX 9070 XT 16GB',short:'16Go GDDR6 · PCIe 5.0 · 304W · FSR 4',price:699,old:null,badge:'new',stock:'in',rating:4.7,rev:198,img:'9070xt.png',specs:[['Mémoire','16 Go GDDR6'],['Interface','PCIe 5.0 x16'],['TDP','304W'],['Technologie','AMD FSR 4'],['Sorties','2x DP 2.1, 2x HDMI 2.1']]},
+  {id:4,cat:'GPU',brand:'NVIDIA',name:'GeForce RTX 4070 Super 12GB',short:'12Go GDDR6X · PCIe 4.0 · 220W · 1440p',price:569,old:649,badge:'promo',stock:'in',rating:4.8,rev:445,img:'super.png',specs:[['Mémoire','12 Go GDDR6X'],['Interface','PCIe 4.0 x16'],['TDP','220W'],['Idéal','1440p Ultra']]},
+  {id:5,cat:'GPU',brand:'AMD',name:'Radeon RX 7900 XTX 24GB',short:'24Go GDDR6 · PCIe 4.0 · 355W · 4K',price:849,old:999,badge:'promo',stock:'low',rating:4.6,rev:223,img:'xtx.png',specs:[['Mémoire','24 Go GDDR6'],['Interface','PCIe 4.0 x16'],['TDP','355W'],['Idéal','4K Ultra']]},
+  {id:6,cat:'CPU',brand:'AMD',name:'Ryzen 9 9950X 16 Cœurs',short:'16C/32T · 5.7 GHz Boost · AM5 · 170W',price:629,old:769,badge:'promo',stock:'in',rating:4.9,rev:534,img:'r9.png',specs:[['Cœurs/Threads','16C / 32T'],['Fréquence Boost','5.7 GHz'],['Cache L3','64 Mo'],['Socket','AM5'],['TDP','170W'],['Mémoire','DDR5-5600']]},
+  {id:7,cat:'CPU',brand:'Intel',name:'Core Ultra 9 285K 24 Cœurs',short:'24C/24T · 5.7 GHz · LGA1851 · 125W',price:589,old:null,badge:'new',stock:'in',rating:4.8,rev:312,img:'core.png',specs:[['Cœurs','24 (8P+16E)'],['Fréquence Boost','5.7 GHz'],['Cache L3','36 Mo'],['Socket','LGA1851'],['TDP','125W'],['Mémoire','DDR5-6400']]},
+  {id:8,cat:'CPU',brand:'AMD',name:'Ryzen 7 9700X 8 Cœurs',short:'8C/16T · 5.5 GHz · AM5 · 65W',price:329,old:null,badge:null,stock:'in',rating:4.7,rev:678,img:'r7.png',specs:[['Cœurs/Threads','8C / 16T'],['Fréquence Boost','5.5 GHz'],['Cache L3','32 Mo'],['Socket','AM5'],['TDP','65W']]},
+  {id:9,cat:'CPU',brand:'Intel',name:'Core i5-14600K 14 Cœurs',short:'14C/20T · 5.3 GHz · LGA1700 · 125W',price:279,old:329,badge:'promo',stock:'in',rating:4.8,rev:892,img:'i5.png',specs:[['Cœurs','14 (6P+8E)'],['Fréquence Boost','5.3 GHz'],['Cache L3','24 Mo'],['Socket','LGA1700'],['TDP','125W']]},
+  {id:10,cat:'CPU',brand:'AMD',name:'Ryzen 5 7600X 6 Cœurs',short:'6C/12T · 5.3 GHz · AM5 · 105W',price:189,old:249,badge:'promo',stock:'in',rating:4.6,rev:1024,img:'r5.png',specs:[['Cœurs/Threads','6C / 12T'],['Fréquence Boost','5.3 GHz'],['Socket','AM5'],['TDP','105W']]},
+  {id:11,cat:'CPU',brand:'Intel',name:'Core Ultra 5 245K 14 Cœurs',short:'14C · 5.2 GHz · LGA1851 · 125W',price:319,old:null,badge:'new',stock:'in',rating:4.5,rev:156,img:'i5.png',specs:[['Cœurs','14 (6P+8E)'],['Fréquence Boost','5.2 GHz'],['Socket','LGA1851'],['TDP','125W']]},
+  {id:12,cat:'MB',brand:'ASUS',name:'ROG Maximus Z890 Hero WiFi',short:'Intel Z890 · DDR5 · PCIe 5.0 · WiFi 7',price:599,old:null,badge:'new',stock:'in',rating:4.7,rev:89,img:'mb1.png',specs:[['Chipset','Intel Z890'],['Format','ATX'],['Slots DDR5','4x (max 192Go)'],['PCIe 5.0','2x x16'],['WiFi','WiFi 7 (BE)'],['USB','4x USB 3.2 Gen 2x2']]},
+  {id:13,cat:'MB',brand:'MSI',name:'MEG X870E ACE WiFi 7',short:'AMD X870E · DDR5 · PCIe 5.0 · WiFi 7',price:499,old:null,badge:'new',stock:'in',rating:4.8,rev:124,img:'mb2.png',specs:[['Chipset','AMD X870E'],['Format','E-ATX'],['Slots DDR5','4x (max 256Go)'],['WiFi','WiFi 7 (BE)'],['Phases VRM','22+2+2']]},
+  {id:14,cat:'MB',brand:'ASUS',name:'PRIME B650-PLUS DDR5',short:'AMD B650 · DDR5 · PCIe 4.0 · M.2 x4',price:189,old:219,badge:'promo',stock:'in',rating:4.5,rev:342,img:'mb3.png',specs:[['Chipset','AMD B650'],['Format','ATX'],['Slots DDR5','4x (max 128Go)'],['M.2','4x NVMe PCIe 4.0']]},
+  {id:15,cat:'RAM',brand:'Corsair',name:'Vengeance DDR5 64Go 6400MHz',short:'2x32Go · CL32 · XMP 3.0 · RGB',price:169,old:219,badge:'promo',stock:'in',rating:4.6,rev:567,img:'ram1.png',specs:[['Capacité','2x 32 Go'],['Fréquence','6400 MHz'],['Latence','CL32-39-39-76'],['Voltage','1.4V'],['Profil','XMP 3.0'],['RGB','Oui']]},
+  {id:16,cat:'RAM',brand:'G.Skill',name:'Trident Z5 RGB 32Go 7200MHz',short:'2x16Go · CL34 · XMP 3.0 · RGB',price:139,old:null,badge:'top',stock:'in',rating:4.9,rev:423,img:'ram2.png',specs:[['Capacité','2x 16 Go'],['Fréquence','7200 MHz'],['Latence','CL34'],['Profil','XMP 3.0 / EXPO'],['RGB','Oui']]},
+  {id:17,cat:'RAM',brand:'Kingston',name:'Fury Beast DDR5 32Go 5600MHz',short:'2x16Go · CL36 · DDR5-5600 · Expo',price:79,old:99,badge:'promo',stock:'in',rating:4.4,rev:789,img:'ddr4.png',specs:[['Capacité','2x 16 Go'],['Fréquence','5600 MHz'],['Latence','CL36'],['Profil','EXPO / XMP']]},
+  {id:18,cat:'SSD',brand:'Samsung',name:'990 Pro NVMe 2To M.2',short:'7 450 Mo/s lect · PCIe 4.0 · 1200 TBW',price:149,old:null,badge:'top',stock:'in',rating:4.9,rev:1247,img:'990.png',specs:[['Capacité','2 To'],['Interface','PCIe 4.0 x4 NVMe'],['Lecture','7 450 Mo/s'],['Écriture','6 900 Mo/s'],['Endurance','1 200 TBW'],['Format','M.2 2280']]},
+  {id:19,cat:'SSD',brand:'WD',name:'Black SN850X 4To NVMe',short:'7 300 Mo/s · PCIe 4.0 · Gaming',price:289,old:349,badge:'promo',stock:'in',rating:4.8,rev:567,img:'ssd1.png',specs:[['Capacité','4 To'],['Lecture','7 300 Mo/s'],['Écriture','6 600 Mo/s'],['Interface','PCIe 4.0 x4']]},
+  {id:20,cat:'SSD',brand:'Crucial',name:'T700 2To PCIe 5.0 NVMe',short:'12 400 Mo/s · PCIe 5.0 · Dissipateur',price:219,old:null,badge:'new',stock:'in',rating:4.7,rev:234,img:'ssd2.png',specs:[['Capacité','2 To'],['Interface','PCIe 5.0 x4 NVMe'],['Lecture','12 400 Mo/s'],['Écriture','11 800 Mo/s'],['Format','M.2 + dissipateur']]},
+  {id:21,cat:'SSD',brand:'Samsung',name:'870 EVO 4To SATA',short:'560 Mo/s · SATA III · Grand stockage',price:229,old:279,badge:null,stock:'in',rating:4.7,rev:2341,img:'hdd.png',specs:[['Capacité','4 To'],['Interface','SATA III'],['Lecture','560 Mo/s'],['Écriture','530 Mo/s']]},
+  {id:22,cat:'PSU',brand:'be quiet!',name:'Dark Power 13 1000W Titanium',short:'1000W · 80+ Titanium · Modulaire',price:229,old:null,badge:'top',stock:'in',rating:4.9,rev:445,img:'alim1.png',specs:[['Puissance','1 000 W'],['Certification','80+ Titanium'],['Câbles','Modulaire'],['Ventilateur','135mm'],['Connecteurs GPU','2x 12V-2x6'],['Garantie','10 ans']]},
+  {id:23,cat:'PSU',brand:'Corsair',name:'RM1000x SHIFT 1000W Gold',short:'1000W · 80+ Gold · Side-Connect',price:179,old:209,badge:'promo',stock:'in',rating:4.7,rev:312,img:'alim2.png',specs:[['Puissance','1 000 W'],['Certification','80+ Gold'],['Innovation','Connecteurs latéraux'],['Garantie','7 ans']]},
+  {id:24,cat:'COOL',brand:'Corsair',name:'iCUE H150i RGB Elite 360mm',short:'AIO 360mm · Triple 120mm ARGB · LCD',price:199,old:null,badge:null,stock:'low',rating:4.6,rev:678,img:'cf.png',specs:[['Type','AIO Liquid Cooling'],['Radiateur','360mm'],['Ventilateurs','3x 120mm ARGB'],['Écran pompe','LCD 2.1"'],['Compatibilité','AM4/AM5/LGA1700/1851'],['Garantie','5 ans']]},
+  {id:25,cat:'COOL',brand:'Noctua',name:'NH-D15 G2 Chromax.Black',short:'2x 140mm NF-A15 · 250W TDP · Air',price:119,old:null,badge:null,stock:'in',rating:4.9,rev:1567,img:'vt.png',specs:[['Type','Air Cooling Dual Tower'],['Ventilateurs','2x 140mm NF-A15'],['TDP Max','250W'],['Hauteur','165mm'],['Garantie','6 ans']]},
+  {id:26,cat:'COOL',brand:'ASUS',name:'ROG Ryujin III 360 ARGB',short:'AIO 360mm · 3x 120mm ARGB · LCD 3.5"',price:279,old:329,badge:'promo',stock:'in',rating:4.7,rev:234,img:'rog.png',specs:[['Type','AIO 360mm'],['Écran pompe','LCD 3.5"'],['Ventilateurs','3x 120mm ARGB'],['Logiciel','Armory Crate']]},
+  {id:27,cat:'CASE',brand:'Lian Li',name:'O11 Dynamic EVO XL Tower',short:'Full Tower · ARGB · E-ATX · Verre Trempé',price:189,old:null,badge:'top',stock:'low',rating:4.9,rev:892,img:'tw.png',specs:[['Format','Full Tower'],['Compatibilité','E-ATX, ATX, mATX'],['Baies ventilateurs','11x 120mm max'],['Verre trempé','3 faces'],['Dimensions','541×285×531mm']]},
+  {id:28,cat:'CASE',brand:'Fractal',name:'Torrent Compact RGB TG',short:'Mid Tower · Airflow · 2x 140mm',price:129,old:149,badge:null,stock:'in',rating:4.8,rev:567,img:'cp.png',specs:[['Format','Mid Tower'],['Ventilateurs inclus','3x (2x140 + 1x120)'],['Compatibilité','ATX, mATX, ITX'],['Verre trempé','Face avant + latérale']]},
+  {id:29,cat:'PERI',brand:'Logitech',name:'G Pro X Superlight 2 DEX',short:'34g · Capteur HERO 2 · 32000 DPI',price:159,old:null,badge:'new',stock:'in',rating:4.9,rev:789,img:'gt.png',specs:[['Poids','34g'],['Capteur','HERO 2'],['DPI','100 - 32 000'],['Autonomie','300h'],['Connectivité','Sans fil 2.4 GHz'],['Boutons','5 programmables']]},
+  {id:30,cat:'PERI',brand:'Corsair',name:'K70 RGB Pro MX Red',short:'Cherry MX Red · PBT Double Shot · USB-C',price:129,old:159,badge:'promo',stock:'in',rating:4.7,rev:1024,img:'k70.png',specs:[['Switches','Cherry MX Red'],['Touches','PBT Double Shot'],['Châssis','Aluminium brushed'],['Rétroéclairage','RGB par touche'],['Connectivité','USB-C détachable']]},
+  {id:31,cat:'PERI',brand:'Logitech',name:'G502 X Plus Hero 25K',short:'89g · HERO 25K · 7 boutons · LightSpeed',price:99,old:129,badge:'promo',stock:'in',rating:4.8,rev:1567,img:'sr.png',specs:[['Poids','89g'],['Capteur','HERO 25K'],['DPI','100 - 25 600'],['Autonomie','130h'],['Boutons','7 programmables']]},
+  {id:32,cat:'PERI',brand:'SteelSeries',name:'Arctis Nova Pro Wireless',short:'Hi-Res · DAC + EQ · PS5/PC · 22h',price:279,old:329,badge:null,stock:'in',rating:4.7,rev:456,img:'cs2.png',specs:[['Connexion','2x 2.4 GHz / BT'],['Réponse fréq.','10-40 000 Hz'],['DAC','Inclus + égaliseur'],['Autonomie','22h + 22h'],['Micro','ClearCast rétractable']]},
+  {id:33,cat:'MON',brand:'ASUS',name:'ROG Swift PG279QM 27" 240Hz',short:'27" IPS · 2560x1440 · 240Hz · G-Sync',price:699,old:799,badge:'promo',stock:'in',rating:4.8,rev:312,img:'asus.png',specs:[['Taille','27"'],['Résolution','2560×1440 (WQHD)'],['Dalle','IPS'],['Fréquence','240 Hz'],['Temps réponse','1ms GtG'],['HDR','DisplayHDR 600'],['Sync','G-Sync Ultimate']]},
+  {id:34,cat:'MON',brand:'LG',name:'UltraGear 27GR95QE OLED 240Hz',short:'26.5" OLED · 2560x1440 · 240Hz · 0.03ms',price:799,old:949,badge:'promo',stock:'low',rating:4.9,rev:234,img:'lg.png',specs:[['Taille','26.5"'],['Résolution','2560×1440'],['Dalle','OLED'],['Fréquence','240 Hz'],['Temps réponse','0.03ms']]},
+  {id:35,cat:'MON',brand:'Samsung',name:'Odyssey G9 OLED 49" 240Hz',short:'49" OLED Curved · 5120x1440 · 240Hz',price:1399,old:1599,badge:null,stock:'in',rating:4.7,rev:156,img:'ads.png',specs:[['Taille','49"'],['Résolution','5120×1440 (DQHD)'],['Dalle','OLED Curved'],['Fréquence','240 Hz'],['Courbure','1800R']]}
 ];
 
-// ===== WHATSAPP SEND =====
-// Numéro WhatsApp de l'entreprise (format international sans + ni espaces)
-const WA_NUMBER = '241076545956';
+const WA_NUMBER='241076545956';
+function sendToWhatsApp(e){e.preventDefault();const nom=document.getElementById('m-name').value.trim();const email=document.getElementById('m-email').value.trim();const tel=document.getElementById('m-phone').value.trim();const budget=document.getElementById('m-budget').value.trim();const composants=document.getElementById('m-components').value.trim();const aide=document.getElementById('m-help').value;const info=document.getElementById('m-info').value.trim();const msg=`🖥️ *DEMANDE DE MONTAGE PC — GABHARDWARE*\n━━━━━━━━━━━━━━━━━━━━━━━━\n👤 *Nom :* ${nom}\n📧 *Email :* ${email}\n📞 *Téléphone :* ${tel}\n💰 *Budget :* ${budget} €\n━━━━━━━━━━━━━━━━━━━━━━━━\n🔧 *Composants souhaités :*\n${composants||'Non précisé'}\n\n🤝 *Besoin de conseil :* ${aide}\n\n📝 *Informations supplémentaires :*\n${info||'Aucune'}\n━━━━━━━━━━━━━━━━━━━━━━━━\n_Message envoyé depuis gabhardware.com_`;window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');document.getElementById('montageForm').reset();toast('✓ Redirection vers <span>WhatsApp</span> — merci !');}
 
-function sendToWhatsApp(e) {
-  e.preventDefault();
-  const nom        = document.getElementById('m-name').value.trim();
-  const email      = document.getElementById('m-email').value.trim();
-  const tel        = document.getElementById('m-phone').value.trim();
-  const budget     = document.getElementById('m-budget').value.trim();
-  const composants = document.getElementById('m-components').value.trim();
-  const aide       = document.getElementById('m-help').value;
-  const info       = document.getElementById('m-info').value.trim();
+function openContactModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeContactModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
 
-  const msg =
-`🖥️ *DEMANDE DE MONTAGE PC — GABHARDWARE*
-━━━━━━━━━━━━━━━━━━━━━━━━
-👤 *Nom :* ${nom}
-📧 *Email :* ${email}
-📞 *Téléphone :* ${tel}
-💰 *Budget :* ${budget} €
-━━━━━━━━━━━━━━━━━━━━━━━━
-🔧 *Composants souhaités :*
-${composants || 'Non précisé'}
-
-🤝 *Besoin de conseil :* ${aide}
-
-📝 *Informations supplémentaires :*
-${info || 'Aucune'}
-━━━━━━━━━━━━━━━━━━━━━━━━
-_Message envoyé depuis gabhardware.com_`;
-
-  const encoded = encodeURIComponent(msg);
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encoded}`, '_blank');
-  document.getElementById('montageForm').reset();
-  toast('✓ Redirection vers <span>WhatsApp</span> — merci !');
-}
-
-// ===== CONTACT MODAL =====
-function openContactModal() {
-  document.getElementById('contactModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeContactModal() {
-  document.getElementById('contactModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ===== CART =====
-let cart = [];
-
-function addToCart(id, e) {
-  if(e) e.stopPropagation();
-  const p = P.find(x=>x.id===id);
-  if(!p) return;
-  const ex = cart.find(x=>x.id===id);
-  if(ex) ex.qty++;
-  else cart.push({...p, qty:1});
-  renderCart();
-  toast(`<span>${p.name.substring(0,28)}...</span> ajouté au panier`);
-}
-function removeFromCart(id) {
-  cart = cart.filter(x=>x.id!==id);
-  renderCart();
-}
-function changeQty(id, d) {
-  const item = cart.find(x=>x.id===id);
-  if(!item) return;
-  item.qty += d;
-  if(item.qty <= 0) removeFromCart(id);
-  else renderCart();
-}
-function renderCart() {
-  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const count = cart.reduce((s,i)=>s+i.qty,0);
-  document.getElementById('cartBadge').textContent = count;
-  const el = document.getElementById('cartItems');
-  const footer = document.getElementById('cartFooter');
-  if(!cart.length) {
-    el.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div class="cart-empty-text">Votre panier est vide</div><button class="btn-secondary" style="margin-top:12px;" onclick="closeCart();showPage('catalog')">PARCOURIR LE CATALOGUE</button></div>`;
-    footer.style.display = 'none';
-  } else {
-    el.innerHTML = cart.map(i=>`<div class="cart-item">
-      <div class="cart-item-img"><img src="${i.img}" alt="${i.name}"></div>
-      <div class="cart-item-info">
-        <div class="cart-item-brand">${i.brand}</div>
-        <div class="cart-item-name">${i.name}</div>
-        <div class="cart-item-price">${(i.price*i.qty).toLocaleString('fr-FR')}€</div>
-        <div class="cart-item-qty">
-          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
-          <span class="qty-val">${i.qty}</span>
-          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
-          <button class="cart-remove" onclick="removeFromCart(${i.id})">🗑</button>
-        </div>
-      </div></div>`).join('');
-    footer.style.display = 'block';
-    document.getElementById('cartTotal').textContent = total.toLocaleString('fr-FR')+'€';
-    const ship = document.getElementById('cartShipping');
-    if(total>=99){ship.textContent='✓ Livraison gratuite incluse';ship.style.color='var(--green)';}
-    else{ship.textContent=`Encore ${99-total}€ pour la livraison gratuite`;ship.style.color='var(--text2)';}
-  }
-}
+let cart=[];
+function addToCart(id,e){if(e)e.stopPropagation();const p=P.find(x=>x.id===id);if(!p)return;const ex=cart.find(x=>x.id===id);if(ex)ex.qty++;else cart.push({...p,qty:1});renderCart();toast(`<span>${p.name.substring(0,28)}...</span> ajouté au panier`);}
+function removeFromCart(id){cart=cart.filter(x=>x.id!==id);renderCart();}
+function changeQty(id,d){const item=cart.find(x=>x.id===id);if(!item)return;item.qty+=d;if(item.qty<=0)removeFromCart(id);else renderCart();}
+function renderCart(){const total=cart.reduce((s,i)=>s+i.price*i.qty,0);const count=cart.reduce((s,i)=>s+i.qty,0);document.getElementById('cartBadge').textContent=count;const el=document.getElementById('cartItems');const footer=document.getElementById('cartFooter');if(!cart.length){el.innerHTML=`<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div class="cart-empty-text">Votre panier est vide</div><button class="btn-secondary" style="margin-top:12px;" onclick="closeCart();showPage('catalog')">PARCOURIR LE CATALOGUE</button></div>`;footer.style.display='none';}else{el.innerHTML=cart.map(i=>`<div class="cart-item"><div class="cart-item-img"><img src="${i.img}" alt="${i.name}"></div><div class="cart-item-info"><div class="cart-item-brand">${i.brand}</div><div class="cart-item-name">${i.name}</div><div class="cart-item-price">${(i.price*i.qty).toLocaleString('fr-FR')}€</div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button><span class="qty-val">${i.qty}</span><button class="qty-btn" onclick="changeQty(${i.id},1)">+</button><button class="cart-remove" onclick="removeFromCart(${i.id})">🗑</button></div></div></div>`).join('');footer.style.display='block';document.getElementById('cartTotal').textContent=total.toLocaleString('fr-FR')+'€';const ship=document.getElementById('cartShipping');if(total>=99){ship.textContent='✓ Livraison gratuite incluse';ship.style.color='var(--green)';}else{ship.textContent=`Encore ${99-total}€ pour la livraison gratuite`;ship.style.color='var(--text2)';}}}
 function openCart(){document.getElementById('cartOverlay').classList.add('open');document.getElementById('cartSidebar').classList.add('open');document.body.style.overflow='hidden';}
 function closeCart(){document.getElementById('cartOverlay').classList.remove('open');document.getElementById('cartSidebar').classList.remove('open');document.body.style.overflow='';}
 
-// ===== CHECKOUT =====
-function openCheckout() {
-  closeCart();
-  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const ship = total>=99?0:5.99;
-  const lines = cart.map(i=>`<div class="checkout-line"><span>${i.name.substring(0,28)}... ×${i.qty}</span><span>${(i.price*i.qty).toLocaleString('fr-FR')}€</span></div>`).join('');
-  document.getElementById('checkoutContent').innerHTML = `
-    <button class="modal-close" onclick="closeCheckoutModal()" style="position:absolute;top:16px;right:16px;">✕</button>
-    <div class="checkout-title">Finaliser la commande</div>
-    <div class="form-grid">
-      <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean"></div>
-      <div class="form-group"><label>Nom</label><input type="text" placeholder="Dupont"></div>
-      <div class="form-group full"><label>Email</label><input type="email" placeholder="jean@exemple.fr"></div>
-      <div class="form-group full"><label>Adresse</label><input type="text" placeholder="123 rue de la Paix"></div>
-      <div class="form-group"><label>Ville</label><input type="text" placeholder="Paris"></div>
-      <div class="form-group"><label>Code Postal</label><input type="text" placeholder="75001"></div>
-      <div class="form-group full"><label>Numéro de carte</label><input type="text" placeholder="•••• •••• •••• ••••"></div>
-      <div class="form-group"><label>Expiration</label><input type="text" placeholder="MM/AA"></div>
-      <div class="form-group"><label>CVV</label><input type="text" placeholder="•••"></div>
-    </div>
-    <div class="checkout-summary">
-      <div class="checkout-summary-title">RÉCAPITULATIF</div>
-      ${lines}
-      <div class="checkout-line"><span>Livraison</span><span>${ship===0?'GRATUITE':ship+'€'}</span></div>
-      <div class="checkout-line total"><span>Total</span><span>${(total+ship).toLocaleString('fr-FR')}€</span></div>
-    </div>
-    <button class="checkout-submit" onclick="placeOrder()">✓ CONFIRMER LA COMMANDE</button>`;
-  document.getElementById('checkoutModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function placeOrder() {
-  document.getElementById('checkoutContent').innerHTML=`<div class="success-screen"><div class="success-icon">✅</div><div class="success-title">Commande Confirmée !</div><p class="success-desc">Merci pour votre commande ! Vous recevrez un email de confirmation sous peu. Livraison estimée sous 24-48h ouvrées.</p><button class="btn-primary" onclick="closeCheckoutModal();cart=[];renderCart();">RETOUR À L'ACCUEIL</button></div>`;
-}
+function openCheckout(){closeCart();const total=cart.reduce((s,i)=>s+i.price*i.qty,0);const ship=total>=99?0:5.99;const lines=cart.map(i=>`<div class="checkout-line"><span>${i.name.substring(0,28)}... ×${i.qty}</span><span>${(i.price*i.qty).toLocaleString('fr-FR')}€</span></div>`).join('');document.getElementById('checkoutContent').innerHTML=`<button class="modal-close" onclick="closeCheckoutModal()" style="position:absolute;top:16px;right:16px;">✕</button><div class="checkout-title">Finaliser la commande</div><div class="form-grid"><div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean"></div><div class="form-group"><label>Nom</label><input type="text" placeholder="Dupont"></div><div class="form-group full"><label>Email</label><input type="email" placeholder="jean@exemple.fr"></div><div class="form-group full"><label>Adresse</label><input type="text" placeholder="123 rue de la Paix"></div><div class="form-group"><label>Ville</label><input type="text" placeholder="Libreville"></div><div class="form-group"><label>Code Postal</label><input type="text" placeholder="00241"></div><div class="form-group full"><label>Numéro de carte</label><input type="text" placeholder="•••• •••• •••• ••••"></div><div class="form-group"><label>Expiration</label><input type="text" placeholder="MM/AA"></div><div class="form-group"><label>CVV</label><input type="text" placeholder="•••"></div></div><div class="checkout-summary"><div class="checkout-summary-title">RÉCAPITULATIF</div>${lines}<div class="checkout-line"><span>Livraison</span><span>${ship===0?'GRATUITE':ship+'€'}</span></div><div class="checkout-line total"><span>Total</span><span>${(total+ship).toLocaleString('fr-FR')}€</span></div></div><button class="checkout-submit" onclick="placeOrder()">✓ CONFIRMER LA COMMANDE</button>`;document.getElementById('checkoutModal').classList.add('open');document.body.style.overflow='hidden';}
+function placeOrder(){document.getElementById('checkoutContent').innerHTML=`<div class="success-screen"><div class="success-icon">✅</div><div class="success-title">Commande Confirmée !</div><p class="success-desc">Merci pour votre commande ! Vous recevrez un email de confirmation sous peu. Livraison estimée sous 24-48h ouvrées.</p><button class="btn-primary" onclick="closeCheckoutModal();cart=[];renderCart();">RETOUR À L'ACCUEIL</button></div>`;}
 function closeCheckoutModal(){document.getElementById('checkoutModal').classList.remove('open');document.body.style.overflow='';}
 
-// ===== PRODUCT MODAL =====
-function openProduct(id) {
-  const p = P.find(x=>x.id===id);
-  if(!p) return;
-  const stars = '★'.repeat(Math.floor(p.rating))+'☆'.repeat(5-Math.floor(p.rating));
-  const oldHtml = p.old?`<span class="modal-price-old">${p.old}€</span>`:'';
-  const sClass = p.stock==='in'?'in-stock':'low-stock';
-  const sLabel = p.stock==='in'?'EN STOCK':'STOCK LIMITÉ';
-  const specs = p.specs.map(([k,v])=>`<div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>`).join('');
-  document.getElementById('productModalContent').innerHTML=`
-    <button class="modal-close" onclick="closeProductModal()">✕</button>
-    <div class="modal-inner">
-      <div class="modal-img-area"><img src="${p.img}" alt="${p.name}"></div>
-      <div class="modal-info">
-        <div class="modal-brand">${p.brand}</div>
-        <div class="modal-name">${p.name}</div>
-        <div class="modal-rating"><span class="stars" style="font-size:14px;">${stars}</span><span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);">${p.rating} (${p.rev} avis)</span></div>
-        <div class="modal-price">${oldHtml}${p.price.toLocaleString('fr-FR')}€</div>
-        <div class="stock-indicator ${sClass}" style="margin-bottom:14px;"><span class="stock-dot"></span>${sLabel}</div>
-        <div class="modal-specs">${specs}</div>
-        <button class="modal-add-btn" onclick="addToCart(${p.id});closeProductModal();">🛒 AJOUTER AU PANIER</button>
-      </div>
-    </div>`;
-  document.getElementById('productModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
+function openProduct(id){const p=P.find(x=>x.id===id);if(!p)return;const stars='★'.repeat(Math.floor(p.rating))+'☆'.repeat(5-Math.floor(p.rating));const oldHtml=p.old?`<span class="modal-price-old">${p.old}€</span>`:'';const sClass=p.stock==='in'?'in-stock':'low-stock';const sLabel=p.stock==='in'?'EN STOCK':'STOCK LIMITÉ';const specs=p.specs.map(([k,v])=>`<div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>`).join('');document.getElementById('productModalContent').innerHTML=`<button class="modal-close" onclick="closeProductModal()">✕</button><div class="modal-inner"><div class="modal-img-area"><img src="${p.img}" alt="${p.name}"></div><div class="modal-info"><div class="modal-brand">${p.brand}</div><div class="modal-name">${p.name}</div><div class="modal-rating"><span class="stars" style="font-size:14px;">${stars}</span><span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);">${p.rating} (${p.rev} avis)</span></div><div class="modal-price">${oldHtml}${p.price.toLocaleString('fr-FR')}€</div><div class="stock-indicator ${sClass}" style="margin-bottom:14px;"><span class="stock-dot"></span>${sLabel}</div><div class="modal-specs">${specs}</div><button class="modal-add-btn" onclick="addToCart(${p.id});closeProductModal();">🛒 AJOUTER AU PANIER</button></div></div>`;document.getElementById('productModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeProductModal(){document.getElementById('productModal').classList.remove('open');document.body.style.overflow='';}
 
-// ===== RENDER CARD =====
-function card(p) {
-  const bHtml = p.badge?`<span class="product-badge badge-${p.badge==='new'?'new':p.badge==='promo'?'promo':'top'}">${p.badge==='new'?'NOUVEAU':p.badge==='promo'?'-'+Math.round((1-p.price/p.old)*100)+'%':'TOP VENTE'}</span>`:'';
-  const oHtml = p.old?`<span class="product-price-old">${p.old}€</span>`:'';
-  const sClass = p.stock==='in'?'in-stock':'low-stock';
-  const sLabel = p.stock==='in'?'EN STOCK':'STOCK LIMITÉ';
-  return `<div class="product-card" onclick="openProduct(${p.id})">
-    ${bHtml}
-    <div class="product-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy">
-      <button class="product-quick-add" onclick="addToCart(${p.id},event)">+ AJOUTER AU PANIER</button>
-    </div>
-    <div class="product-info">
-      <div class="product-brand">${p.brand}</div>
-      <div class="product-name">${p.name}</div>
-      <div class="product-specs">${p.short}</div>
-      <div class="product-footer">
-        <div>${oHtml}<span class="product-price">${p.price.toLocaleString('fr-FR')}€</span>
-          <div class="stock-indicator ${sClass}"><span class="stock-dot"></span>${sLabel}</div>
-        </div>
-        <div class="product-rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}</span> ${p.rating}</div>
-      </div>
-    </div></div>`;
-}
+function card(p){const bHtml=p.badge?`<span class="product-badge badge-${p.badge==='new'?'new':p.badge==='promo'?'promo':'top'}">${p.badge==='new'?'NOUVEAU':p.badge==='promo'?'-'+Math.round((1-p.price/p.old)*100)+'%':'TOP VENTE'}</span>`:'';const oHtml=p.old?`<span class="product-price-old">${p.old}€</span>`:'';const sClass=p.stock==='in'?'in-stock':'low-stock';const sLabel=p.stock==='in'?'EN STOCK':'STOCK LIMITÉ';return `<div class="product-card" onclick="openProduct(${p.id})">${bHtml}<div class="product-img-wrap"><img src="${p.img}" alt="${p.name}" loading="lazy"><button class="product-quick-add" onclick="addToCart(${p.id},event)">+ AJOUTER</button></div><div class="product-info"><div class="product-brand">${p.brand}</div><div class="product-name">${p.name}</div><div class="product-specs">${p.short}</div><div class="product-footer"><div>${oHtml}<span class="product-price">${p.price.toLocaleString('fr-FR')}€</span><div class="stock-indicator ${sClass}"><span class="stock-dot"></span>${sLabel}</div></div><div class="product-rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}</span> ${p.rating}</div></div></div></div>`;}
 
-// ===== HOME =====
-function renderHome() {
-  const featured = P.filter(p=>p.badge).slice(0,8);
-  document.getElementById('homeFeatured').innerHTML = featured.map(card).join('');
-  animCount('c1',50,1800);
-  animCount('c2',120,1800);
-  animCount('c3',24,800);
-}
-function animCount(id,target,dur) {
-  const el=document.getElementById(id);if(!el)return;
-  const step=target/(dur/16);let v=0;
-  const u=()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v);if(v<target)requestAnimationFrame(u);};u();
-}
+function renderHome(){const featured=P.filter(p=>p.badge).slice(0,8);document.getElementById('homeFeatured').innerHTML=featured.map(card).join('');animCount('c1',50,1800);animCount('c2',120,1800);animCount('c3',24,800);}
+function animCount(id,target,dur){const el=document.getElementById(id);if(!el)return;const step=target/(dur/16);let v=0;const u=()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v);if(v<target)requestAnimationFrame(u);};u();}
 
-// ===== CATALOG =====
-let filtered = [...P];
+let filtered=[...P];
+function renderCatalog(){const g=document.getElementById('catalogGrid');if(!filtered.length){g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-size:22px;letter-spacing:2px;">AUCUN PRODUIT TROUVÉ</div>`;return;}g.innerHTML=filtered.map(card).join('');document.getElementById('catalogCount').textContent=filtered.length;document.getElementById('catalogCountHero').textContent=filtered.length+' produit'+(filtered.length>1?'s':'')+' en stock';}
 
-function renderCatalog() {
-  const g = document.getElementById('catalogGrid');
-  if(!filtered.length){g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-size:22px;letter-spacing:2px;">AUCUN PRODUIT TROUVÉ</div>`;return;}
-  g.innerHTML = filtered.map(card).join('');
-  document.getElementById('catalogCount').textContent = filtered.length;
-  document.getElementById('catalogCountHero').textContent = filtered.length+' produit'+(filtered.length>1?'s':'')+' en stock';
-}
+function onFilterChange(cat){if(cat==='ALL'){['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].forEach(c=>{const e=document.getElementById('f-'+c);if(e)e.checked=false;});}else{document.getElementById('f-ALL').checked=false;}applyFilters();}
 
-function onFilterChange(cat) {
-  if(cat==='ALL') {
-    ['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].forEach(c=>{const e=document.getElementById('f-'+c);if(e)e.checked=false;});
-  } else {
-    document.getElementById('f-ALL').checked=false;
-  }
-  applyFilters();
-}
+function applyFilters(){const allChecked=document.getElementById('f-ALL').checked;const cats=['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].filter(c=>document.getElementById('f-'+c)?.checked);const brandMap={nvidia:'NVIDIA',amd:'AMD',intel:'Intel',asus:'ASUS',corsair:'Corsair',samsung:'Samsung',msi:'MSI',bequiet:'be quiet!'};const brands=Object.keys(brandMap).filter(b=>document.getElementById('b-'+b)?.checked);const pmin=parseInt(document.getElementById('pMin').value)||0;const pmax=parseInt(document.getElementById('pMax').value)||9999;const inStock=document.getElementById('f-instock').checked;const promoOnly=document.getElementById('f-promo').checked;filtered=P.filter(p=>{if(!allChecked&&cats.length&&!cats.includes(p.cat))return false;if(brands.length&&!brands.some(b=>p.brand===brandMap[b]))return false;if(p.price<pmin||p.price>pmax)return false;if(inStock&&p.stock==='out')return false;if(promoOnly&&!p.old)return false;return true;});const s=document.getElementById('sortSel').value;if(s==='price-asc')filtered.sort((a,b)=>a.price-b.price);else if(s==='price-desc')filtered.sort((a,b)=>b.price-a.price);else if(s==='rating')filtered.sort((a,b)=>b.rating-a.rating);else if(s==='new')filtered.sort((a,b)=>(b.badge==='new'?1:0)-(a.badge==='new'?1:0));renderCatalog();}
 
-function applyFilters() {
-  const allChecked = document.getElementById('f-ALL').checked;
-  const cats = ['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].filter(c=>document.getElementById('f-'+c)?.checked);
-  const brandMap = {nvidia:'NVIDIA',amd:'AMD',intel:'Intel',asus:'ASUS',corsair:'Corsair',samsung:'Samsung',msi:'MSI',bequiet:'be quiet!'};
-  const brands = Object.keys(brandMap).filter(b=>document.getElementById('b-'+b)?.checked);
-  const pmin = parseInt(document.getElementById('pMin').value)||0;
-  const pmax = parseInt(document.getElementById('pMax').value)||9999;
-  const inStock = document.getElementById('f-instock').checked;
-  const promoOnly = document.getElementById('f-promo').checked;
+function resetFilters(){document.getElementById('f-ALL').checked=true;['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].forEach(c=>{const e=document.getElementById('f-'+c);if(e)e.checked=false;});Object.keys({nvidia:1,amd:1,intel:1,asus:1,corsair:1,samsung:1,msi:1,bequiet:1}).forEach(b=>{const e=document.getElementById('b-'+b);if(e)e.checked=false;});document.getElementById('pMin').value=0;document.getElementById('pMax').value=9999;document.getElementById('f-instock').checked=false;document.getElementById('f-promo').checked=false;document.getElementById('sortSel').value='';filtered=[...P];renderCatalog();}
 
-  filtered = P.filter(p=>{
-    if(!allChecked && cats.length && !cats.includes(p.cat)) return false;
-    if(brands.length && !brands.some(b=>p.brand===brandMap[b])) return false;
-    if(p.price<pmin||p.price>pmax) return false;
-    if(inStock && p.stock==='out') return false;
-    if(promoOnly && !p.old) return false;
-    return true;
-  });
+function showPage(name,skipReset){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+name).classList.add('active');document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));const n=document.getElementById('nav-'+name);if(n)n.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});if(name==='catalog'&&!skipReset){filtered=[...P];renderCatalog();}if(name==='blog'){renderBlog(currentBlogFilter);}closeMobileNav();}
+function showCat(cat){showPage('catalog');setTimeout(()=>{document.getElementById('f-ALL').checked=false;['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].forEach(c=>{const e=document.getElementById('f-'+c);if(e)e.checked=(c===cat);});applyFilters();},80);}
+function goSection(id){showPage('home');setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'}),100);}
+function handleSearch(v){const q=v.trim().toLowerCase();if(!q){filtered=[...P];resetFilters();showPage('catalog');return;}filtered=P.filter(p=>p.name.toLowerCase().includes(q)||p.brand.toLowerCase().includes(q)||p.short.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q));showPage('catalog',true);renderCatalog();}
 
-  const s = document.getElementById('sortSel').value;
-  if(s==='price-asc') filtered.sort((a,b)=>a.price-b.price);
-  else if(s==='price-desc') filtered.sort((a,b)=>b.price-a.price);
-  else if(s==='rating') filtered.sort((a,b)=>b.rating-a.rating);
-  else if(s==='new') filtered.sort((a,b)=>(b.badge==='new'?1:0)-(a.badge==='new'?1:0));
-  renderCatalog();
-}
-
-function resetFilters() {
-  document.getElementById('f-ALL').checked=true;
-  ['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].forEach(c=>{const e=document.getElementById('f-'+c);if(e)e.checked=false;});
-  Object.keys({nvidia:1,amd:1,intel:1,asus:1,corsair:1,samsung:1,msi:1,bequiet:1}).forEach(b=>{const e=document.getElementById('b-'+b);if(e)e.checked=false;});
-  document.getElementById('pMin').value=0;
-  document.getElementById('pMax').value=9999;
-  document.getElementById('f-instock').checked=false;
-  document.getElementById('f-promo').checked=false;
-  document.getElementById('sortSel').value='';
-  filtered=[...P];
-  renderCatalog();
-}
-
-// ===== NAVIGATION =====
-function showPage(name, skipReset) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  const n=document.getElementById('nav-'+name);if(n)n.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(name==='catalog' && !skipReset){filtered=[...P];renderCatalog();}
-  if(name==='blog'){renderBlog(currentBlogFilter);}
-}
-function showCat(cat) {
-  showPage('catalog');
-  setTimeout(()=>{
-    document.getElementById('f-ALL').checked=false;
-    ['GPU','CPU','MB','RAM','SSD','PSU','COOL','CASE','PERI','MON'].forEach(c=>{const e=document.getElementById('f-'+c);if(e)e.checked=(c===cat);});
-    applyFilters();
-  },80);
-}
-function goSection(id) {
-  showPage('home');
-  setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'}),100);
-}
-function handleSearch(v) {
-  const q = v.trim().toLowerCase();
-  if(!q) {
-    // Champ vide : reset complet
-    filtered = [...P];
-    resetFilters();
-    showPage('catalog');
-    return;
-  }
-  // Filtre sur nom, marque, specs courtes et catégorie
-  filtered = P.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.brand.toLowerCase().includes(q) ||
-    p.short.toLowerCase().includes(q) ||
-    p.cat.toLowerCase().includes(q)
-  );
-  // Bascule sur le catalogue SANS écraser filtered
-  showPage('catalog', true);
-  renderCatalog();
-}
-
-// ===== TOAST =====
 let toastTimer;
 function toast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').innerHTML=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
 
-// ===== CURSOR =====
+// Cursor (desktop only)
 const cur=document.getElementById('cursor'),ring=document.getElementById('ring');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
-document.querySelectorAll('button,a,.cat-card,.product-card,.brand-item,.cart-btn,.promo-card,.social-btn,.filter-option,.theme-toggle').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px';ring.borderColor='rgba(0,229,255,.9)';});
-  el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(0,229,255,.5)';});
-});
+if(window.matchMedia('(pointer:fine)').matches){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+}
 
-// ===== BLOG DATA =====
-const BLOG = [
-  {id:1,featured:true,cat:'guide',catLabel:'Guide',emoji:'🖥️',
-   title:'Comment choisir sa carte graphique en 2025 : le guide complet',
-   excerpt:'RTX 5090, RX 9070 XT, budget, résolution cible… on t\'explique tout pour ne pas te tromper lors de ton achat.',
-   author:'Nathan',authorInit:'N',date:'15 Jan 2025',readTime:'8 min',views:'4.2K',
-   tags:['GPU','RTX 5090','Guide','Gaming'],
-   content:`<p>Choisir une carte graphique en 2025 n'a jamais été aussi complexe — ni aussi excitant. Entre les nouvelles architectures NVIDIA Blackwell et AMD RDNA 4, les options sont nombreuses.</p>
-   <h3>1. Définir ta résolution cible</h3>
-   <p>Tout commence par là. Joues-tu en 1080p, 1440p ou 4K ? La réponse va conditionner tout ton choix :</p>
-   <ul><li><strong>1080p / 1440p gaming</strong> : RTX 4070 Super, RX 7900 XTX → excellent rapport perf/prix</li>
-   <li><strong>4K Ultra</strong> : RTX 5080 ou RX 9070 XT → le sweet spot en 2025</li>
-   <li><strong>4K + Ray Tracing maximal</strong> : RTX 5090 → la bête absolue</li></ul>
-   <div class="highlight">💡 La RTX 5080 offre 90% des perfs de la 5090 pour 60% du prix. C'est souvent le meilleur choix pour un setup haut de gamme.</div>
-   <h3>2. NVIDIA vs AMD en 2025</h3>
-   <p>NVIDIA domine sur le ray tracing et l'upscaling (DLSS 4 est bluffant). AMD a comblé son retard sur FSR 4 et propose des prix plus agressifs avec la gamme RX 9000.</p>
-   <h3>3. VRAM : combien faut-il ?</h3>
-   <p>En 2025, 12 Go est le strict minimum pour du 1440p en ultra. Pour le 4K, visez 16 Go ou plus. La RTX 5090 avec ses 32 Go GDDR7 est future-proof pour plusieurs années.</p>`,
-   related:[2,3,4]},
-  {id:2,featured:false,cat:'test',catLabel:'Test',emoji:'⚡',
-   title:'Test RTX 5090 : la carte graphique la plus puissante de l\'histoire',
-   excerpt:'On a poussé la RTX 5090 dans ses retranchements : Cyberpunk 2077 4K, rendu Blender, températures. Le verdict.',
-   author:'Kevin',authorInit:'K',date:'10 Jan 2025',readTime:'12 min',views:'8.7K',
-   tags:['RTX 5090','Benchmark','NVIDIA','4K'],
-   content:`<p>La GeForce RTX 5090 est arrivée dans notre labo avec une promesse folle : doubler les perfs de la RTX 4090. Spoiler : c'est quasi vrai.</p>
-   <h3>Fiche technique</h3>
-   <p>32 Go de GDDR7, architecture Blackwell, PCIe 5.0, TDP de 575W. Une carte qui nécessite une alimentation solide et un bon refroidissement boîtier.</p>
-   <div class="highlight">🎮 Cyberpunk 2077 4K Ultra RT : 94 FPS en moyenne avec DLSS Quality. La 4090 plafonnait à 52 FPS dans les mêmes conditions.</div>
-   <h3>Températures</h3>
-   <p>On a mesuré 78°C en charge maximale dans notre boîtier Lian Li O11 EVO — dans la normale pour ce segment. La consommation réelle oscille entre 490 et 560W.</p>
-   <h3>Verdict</h3>
-   <p>La RTX 5090 est la meilleure carte graphique jamais produite. Son prix de 1999€ est justifié si tu joues en 4K et veux le nec plus ultra. Pour le reste du monde, la RTX 5080 reste le choix le plus sensé.</p>`,
-   related:[1,3,5]},
-  {id:3,featured:false,cat:'guide',catLabel:'Guide',emoji:'🔧',
-   title:'Monter son PC gaming en 2025 : le guide pas à pas pour débutants',
-   excerpt:'Commande tes composants, prépare ton espace, suis nos étapes illustrées. Monter un PC, c\'est plus simple qu\'il n\'y paraît.',
-   author:'Nathan',authorInit:'N',date:'5 Jan 2025',readTime:'15 min',views:'6.1K',
-   tags:['Build PC','Guide','Débutant','Gaming'],
-   content:`<p>Monter son propre PC gaming est l'une des meilleures décisions que tu puisses prendre. Tu économises sur la main-d'œuvre, tu comprends ta machine, et tu peux l'upgrader facilement.</p>
-   <h3>Les outils indispensables</h3>
-   <ul><li>Tournevis cruciforme magnétique (taille PH2)</li><li>Bracelet antistatique</li><li>Pâte thermique</li><li>Bonne lumière et patience</li></ul>
-   <h3>L'ordre de montage idéal</h3>
-   <p>1. Installer le CPU → 2. Fixer le ventirad → 3. Insérer la RAM → 4. Monter la CM dans le boîtier → 5. Brancher l'alim → 6. Installer les SSD M.2 → 7. Câbler → 8. GPU.</p>
-   <div class="highlight">⚠️ Ne force jamais ! Si un composant ne rentre pas facilement, quelque chose est mal aligné. Vérifier l'orientation avant d'appuyer.</div>
-   <h3>Premier démarrage</h3>
-   <p>Si l'écran reste noir au premier allumage, vérifie le câble d'écran (branché sur la GPU, pas sur la CM), la RAM bien enfoncée, et le connecteur d'alimentation CPU (souvent oublié !).</p>`,
-   related:[1,4,6]},
-  {id:4,featured:false,cat:'comparatif',catLabel:'Comparatif',emoji:'⚔️',
-   title:'AMD Ryzen 9 9950X vs Intel Core Ultra 9 285K : qui domine en 2025 ?',
-   excerpt:'Le duel des titans CPU. Perfs en gaming, en rendu, en multi-thread : on compare tout en détail.',
-   author:'Marie',authorInit:'M',date:'28 Déc 2024',readTime:'10 min',views:'5.3K',
-   tags:['CPU','AMD','Intel','Comparatif'],
-   content:`<p>C'est le match que tout le monde attendait : AMD Ryzen 9 9950X face à l'Intel Core Ultra 9 285K. Deux monstres qui visent le même public — créateurs de contenu et gamers exigeants.</p>
-   <h3>Gaming 4K</h3>
-   <p>En gaming pur à haute résolution, les deux sont à égalité quasi parfaite. L'écart ne dépasse jamais 3-4 FPS — la GPU devient le facteur limitant bien avant le CPU.</p>
-   <div class="highlight">📊 Blender BMW render : Ryzen 9950X en 1m 12s, Core Ultra 9 285K en 1m 08s. Intel prend l'avantage grâce à ses 24 cœurs.</div>
-   <h3>Verdict</h3>
-   <p>Pour le gaming seul → prends le moins cher. Pour la création → 285K en multi-thread pur, 9950X pour l'efficience énergétique. Pour l'overclocking → 9950X sur AM5 a encore de la marge.</p>`,
-   related:[1,5,6]},
-  {id:5,featured:false,cat:'actu',catLabel:'Actualité',emoji:'📰',
-   title:'NVIDIA DLSS 4 : l\'upscaling change de dimension avec la Frame Generation multi-images',
-   excerpt:'DLSS 4 peut générer jusqu\'à 3 images par image rendue. On a testé sur RTX 5080 — c\'est bluffant.',
-   author:'Kevin',authorInit:'K',date:'20 Déc 2024',readTime:'6 min',views:'9.4K',
-   tags:['DLSS 4','NVIDIA','RTX 5000','Technologie'],
-   content:`<p>NVIDIA a frappé fort avec DLSS 4. La Multi Frame Generation : au lieu de générer 1 image intermédiaire par image rendue, le moteur peut en générer jusqu'à 3.</p>
-   <div class="highlight">🎮 Sur Cyberpunk 2077 4K Ultra, une RTX 5080 passe de 45 FPS natifs à 180 FPS avec DLSS 4 Quality + MFG x4. La fluidité est époustouflante.</div>
-   <h3>Les limites</h3>
-   <p>La latence d'input augmente avec le nombre d'images générées. NVIDIA intègre NVIDIA Reflex obligatoirement pour compenser, mais on ressent un léger décalage dans les jeux très compétitifs.</p>
-   <h3>Compatibilité</h3>
-   <p>DLSS 4 Multi Frame Generation est exclusif aux RTX 5000. Les RTX 4000 bénéficient de DLSS 4 en mode qualité amélioré, mais pas du MFG avancé.</p>`,
-   related:[2,1,4]},
-  {id:6,featured:false,cat:'conseil',catLabel:'Conseil',emoji:'❄️',
-   title:'Watercooling AIO vs ventirad : que choisir pour ton build 2025 ?',
-   excerpt:'Budget, performances, bruit, fiabilité. On compare les meilleurs systèmes de refroidissement du marché.',
-   author:'Marie',authorInit:'M',date:'12 Déc 2024',readTime:'7 min',views:'3.8K',
-   tags:['Refroidissement','AIO','Ventirad','Build'],
-   content:`<p>Le choix du système de refroidissement est souvent sous-estimé. Un bon cooling peut faire gagner plusieurs degrés — et donc des MHz en overclocking.</p>
-   <h3>Les ventirads : simples, fiables, efficaces</h3>
-   <p>Un bon ventirad double tour comme le Noctua NH-D15 G2 peut refroidir des CPU jusqu'à 250W TDP. Pas de liquide, pas de pompe, zéro risque de fuite. Durée de vie > 10 ans.</p>
-   <div class="highlight">🏆 Le Noctua NH-D15 G2 reste le roi de l'air cooling en 2025. Il bat des AIO 240mm en perfs thermiques tout en étant quasi-inaudible.</div>
-   <h3>Que choisir ?</h3>
-   <ul><li><strong>CPU 65-125W</strong> → ventirad 120-140mm suffit</li>
-   <li><strong>CPU 125-170W</strong> → AIO 240/280mm ou bon dual-tower</li>
-   <li><strong>CPU > 200W ou OC intensif</strong> → AIO 360mm ou NH-D15 G2</li></ul>`,
-   related:[3,4,1]},
-  {id:7,featured:false,cat:'actu',catLabel:'Actualité',emoji:'🚀',
-   title:'AMD RX 9070 XT : la meilleure GPU milieu de gamme de 2025 ?',
-   excerpt:'À 699€, la RX 9070 XT chamboule le marché GPU. On compare ses perfs aux RTX 4070 Super et 4080 Super.',
-   author:'Nathan',authorInit:'N',date:'8 Déc 2024',readTime:'9 min',views:'7.2K',
-   tags:['AMD','RX 9070 XT','GPU','Comparatif'],
-   content:`<p>AMD a frappé un grand coup avec la Radeon RX 9070 XT. À 699€, elle égale la RTX 4080 Super en rasterisation — pour 250€ de moins.</p>
-   <div class="highlight">📊 Forza Horizon 5 4K Ultra : RX 9070 XT → 87 FPS / RTX 4080 Super → 84 FPS / RTX 4070 Super → 68 FPS.</div>
-   <h3>Les limites</h3>
-   <p>Le ray tracing reste le talon d'Achille d'AMD. En mode RT Ultra, l'écart avec NVIDIA se creuse significativement. FSR 4 a comblé une partie du retard sur DLSS.</p>
-   <h3>Verdict</h3>
-   <p>Pour du gaming rasterisation pur en 4K, la RX 9070 XT est le meilleur rapport qualité/prix du marché en 2025. Si le ray tracing est prioritaire, la RTX 5080 s'impose.</p>`,
-   related:[1,2,4]},
-  {id:8,featured:false,cat:'conseil',catLabel:'Conseil',emoji:'💰',
-   title:'Meilleure config PC gaming à 1000€ en 2025 : notre sélection experte',
-   excerpt:'On a composé la build idéale pour 1000€ : processeur, GPU, RAM, SSD, boîtier. Sans compromis inutiles.',
-   author:'Kevin',authorInit:'K',date:'1 Déc 2024',readTime:'11 min',views:'11.2K',
-   tags:['Budget','Build PC','Config','Gaming'],
-   content:`<p>1000€ pour un PC gaming complet en 2025, c'est un budget serré mais réaliste pour une machine capable de tourner tous les jeux en 1440p Ultra.</p>
-   <h3>La config complète</h3>
-   <ul><li>🖥️ <strong>CPU</strong> : AMD Ryzen 7 9700X (329€)</li>
-   <li>📋 <strong>Carte mère</strong> : ASUS PRIME B650-PLUS DDR5 (189€)</li>
-   <li>🧠 <strong>RAM</strong> : Kingston Fury Beast DDR5 32Go 5600MHz (79€)</li>
-   <li>🎮 <strong>GPU</strong> : RTX 4070 Super 12GB (569€)</li>
-   <li>💾 <strong>SSD</strong> : Samsung 990 Pro 1To (89€)</li>
-   <li>⚡ <strong>Alim</strong> : Corsair RM750x Gold (99€)</li>
-   <li>🏠 <strong>Boîtier</strong> : Fractal Torrent Compact (129€)</li></ul>
-   <div class="highlight">💡 Avec les promos et cashback, cette config passe facilement sous les 1200€.</div>
-   <h3>Pourquoi ces choix ?</h3>
-   <p>Le Ryzen 7 9700X offre le meilleur single-thread de sa gamme avec seulement 65W TDP. La RTX 4070 Super reste le meilleur GPU 1440p du marché sans débourser une fortune.</p>`,
-   related:[3,1,6]}
+// Blog
+const BLOG=[
+  {id:1,featured:true,cat:'guide',catLabel:'Guide',emoji:'🖥️',title:'Comment choisir sa carte graphique en 2025 : le guide complet',excerpt:'RTX 5090, RX 9070 XT, budget, résolution cible… on t\'explique tout pour ne pas te tromper lors de ton achat.',author:'Nathan',authorInit:'N',date:'15 Jan 2025',readTime:'8 min',views:'4.2K',tags:['GPU','RTX 5090','Guide','Gaming'],content:`<p>Choisir une carte graphique en 2025 n'a jamais été aussi complexe — ni aussi excitant. Entre les nouvelles architectures NVIDIA Blackwell et AMD RDNA 4, les options sont nombreuses.</p><h3>1. Définir ta résolution cible</h3><p>Tout commence par là. Joues-tu en 1080p, 1440p ou 4K ?</p><ul><li><strong>1080p / 1440p gaming</strong> : RTX 4070 Super → excellent rapport perf/prix</li><li><strong>4K Ultra</strong> : RTX 5080 ou RX 9070 XT → le sweet spot en 2025</li><li><strong>4K + Ray Tracing maximal</strong> : RTX 5090 → la bête absolue</li></ul><div class="highlight">💡 La RTX 5080 offre 90% des perfs de la 5090 pour 60% du prix.</div><h3>2. NVIDIA vs AMD en 2025</h3><p>NVIDIA domine sur le ray tracing et l'upscaling (DLSS 4 est bluffant). AMD a comblé son retard sur FSR 4 et propose des prix plus agressifs avec la gamme RX 9000.</p>`,related:[2,3,4]},
+  {id:2,featured:false,cat:'test',catLabel:'Test',emoji:'⚡',title:'Test RTX 5090 : la carte graphique la plus puissante de l\'histoire',excerpt:'On a poussé la RTX 5090 dans ses retranchements : Cyberpunk 2077 4K, rendu Blender, températures. Le verdict.',author:'Kevin',authorInit:'K',date:'10 Jan 2025',readTime:'12 min',views:'8.7K',tags:['RTX 5090','Benchmark','NVIDIA','4K'],content:`<p>La GeForce RTX 5090 est arrivée dans notre labo avec une promesse folle : doubler les perfs de la RTX 4090.</p><div class="highlight">🎮 Cyberpunk 2077 4K Ultra RT : 94 FPS en moyenne avec DLSS Quality. La 4090 plafonnait à 52 FPS dans les mêmes conditions.</div><h3>Verdict</h3><p>La RTX 5090 est la meilleure carte graphique jamais produite. Son prix de 1999€ est justifié si tu joues en 4K.</p>`,related:[1,3,5]},
+  {id:3,featured:false,cat:'guide',catLabel:'Guide',emoji:'🔧',title:'Monter son PC gaming en 2025 : le guide pas à pas pour débutants',excerpt:'Commande tes composants, prépare ton espace, suis nos étapes illustrées. Monter un PC, c\'est plus simple qu\'il n\'y paraît.',author:'Nathan',authorInit:'N',date:'5 Jan 2025',readTime:'15 min',views:'6.1K',tags:['Build PC','Guide','Débutant','Gaming'],content:`<p>Monter son propre PC gaming est l'une des meilleures décisions que tu puisses prendre.</p><h3>L'ordre de montage idéal</h3><p>1. Installer le CPU → 2. Fixer le ventirad → 3. Insérer la RAM → 4. Monter la CM dans le boîtier → 5. Brancher l'alim → 6. Installer les SSD M.2 → 7. Câbler → 8. GPU.</p><div class="highlight">⚠️ Ne force jamais ! Si un composant ne rentre pas facilement, quelque chose est mal aligné.</div>`,related:[1,4,6]},
+  {id:4,featured:false,cat:'comparatif',catLabel:'Comparatif',emoji:'⚔️',title:'AMD Ryzen 9 9950X vs Intel Core Ultra 9 285K : qui domine en 2025 ?',excerpt:'Le duel des titans CPU. Perfs en gaming, en rendu, en multi-thread : on compare tout en détail.',author:'Marie',authorInit:'M',date:'28 Déc 2024',readTime:'10 min',views:'5.3K',tags:['CPU','AMD','Intel','Comparatif'],content:`<p>C'est le match que tout le monde attendait : AMD Ryzen 9 9950X face à l'Intel Core Ultra 9 285K.</p><div class="highlight">📊 Blender BMW render : Ryzen 9950X en 1m 12s, Core Ultra 9 285K en 1m 08s. Intel prend l'avantage.</div><h3>Verdict</h3><p>Pour le gaming seul → prends le moins cher. Pour la création → 285K en multi-thread pur, 9950X pour l'efficience énergétique.</p>`,related:[1,5,6]},
+  {id:5,featured:false,cat:'actu',catLabel:'Actualité',emoji:'📰',title:'NVIDIA DLSS 4 : l\'upscaling change de dimension avec la Frame Generation multi-images',excerpt:'DLSS 4 peut générer jusqu\'à 3 images par image rendue. On a testé sur RTX 5080 — c\'est bluffant.',author:'Kevin',authorInit:'K',date:'20 Déc 2024',readTime:'6 min',views:'9.4K',tags:['DLSS 4','NVIDIA','RTX 5000','Technologie'],content:`<p>NVIDIA a frappé fort avec DLSS 4. La Multi Frame Generation peut générer jusqu'à 3 images intermédiaires par image rendue.</p><div class="highlight">🎮 Sur Cyberpunk 2077 4K Ultra, une RTX 5080 passe de 45 FPS natifs à 180 FPS avec DLSS 4 Quality + MFG x4.</div>`,related:[2,1,4]},
+  {id:6,featured:false,cat:'conseil',catLabel:'Conseil',emoji:'❄️',title:'Watercooling AIO vs ventirad : que choisir pour ton build 2025 ?',excerpt:'Budget, performances, bruit, fiabilité. On compare les meilleurs systèmes de refroidissement du marché.',author:'Marie',authorInit:'M',date:'12 Déc 2024',readTime:'7 min',views:'3.8K',tags:['Refroidissement','AIO','Ventirad','Build'],content:`<p>Le choix du système de refroidissement est souvent sous-estimé.</p><div class="highlight">🏆 Le Noctua NH-D15 G2 reste le roi de l'air cooling en 2025. Il bat des AIO 240mm en perfs thermiques.</div><h3>Que choisir ?</h3><ul><li><strong>CPU 65-125W</strong> → ventirad 120-140mm suffit</li><li><strong>CPU 125-170W</strong> → AIO 240/280mm ou bon dual-tower</li><li><strong>CPU > 200W ou OC intensif</strong> → AIO 360mm ou NH-D15 G2</li></ul>`,related:[3,4,1]},
+  {id:7,featured:false,cat:'actu',catLabel:'Actualité',emoji:'🚀',title:'AMD RX 9070 XT : la meilleure GPU milieu de gamme de 2025 ?',excerpt:'À 699€, la RX 9070 XT chamboule le marché GPU. On compare ses perfs aux RTX 4070 Super et 4080 Super.',author:'Nathan',authorInit:'N',date:'8 Déc 2024',readTime:'9 min',views:'7.2K',tags:['AMD','RX 9070 XT','GPU','Comparatif'],content:`<p>AMD a frappé un grand coup avec la Radeon RX 9070 XT. À 699€, elle égale la RTX 4080 Super en rasterisation.</p><div class="highlight">📊 Forza Horizon 5 4K Ultra : RX 9070 XT → 87 FPS / RTX 4080 Super → 84 FPS.</div>`,related:[1,2,4]},
+  {id:8,featured:false,cat:'conseil',catLabel:'Conseil',emoji:'💰',title:'Meilleure config PC gaming à 1000€ en 2025 : notre sélection experte',excerpt:'On a composé la build idéale pour 1000€ : processeur, GPU, RAM, SSD, boîtier. Sans compromis inutiles.',author:'Kevin',authorInit:'K',date:'1 Déc 2024',readTime:'11 min',views:'11.2K',tags:['Budget','Build PC','Config','Gaming'],content:`<p>1000€ pour un PC gaming complet en 2025, c'est un budget serré mais réaliste pour une machine capable de tourner tous les jeux en 1440p Ultra.</p><ul><li>🖥️ <strong>CPU</strong> : AMD Ryzen 7 9700X (329€)</li><li>🎮 <strong>GPU</strong> : RTX 4070 Super 12GB (569€)</li><li>🧠 <strong>RAM</strong> : Kingston Fury Beast DDR5 32Go (79€)</li><li>💾 <strong>SSD</strong> : Samsung 990 Pro 1To (89€)</li></ul><div class="highlight">💡 Avec les promos et cashback, cette config passe facilement sous les 1200€.</div>`,related:[3,1,6]}
 ];
 
-let currentBlogFilter = 'all';
+let currentBlogFilter='all';
+function renderBlog(filter){currentBlogFilter=filter||'all';const articles=currentBlogFilter==='all'?BLOG:BLOG.filter(a=>a.cat===currentBlogFilter);const grid=document.getElementById('blogGrid');if(!articles.length){grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-size:22px;letter-spacing:2px;">AUCUN ARTICLE DANS CETTE CATÉGORIE</div>`;return;}grid.innerHTML=articles.map((a,i)=>{const featured=(i===0&&currentBlogFilter==='all')?'featured':'';return `<div class="blog-card ${featured}" onclick="openArticle(${a.id})"><div class="blog-card-img"><span>${a.emoji}</span><div class="blog-card-img-overlay"></div><span class="blog-card-cat">${a.catLabel}</span></div><div class="blog-card-body"><div class="blog-card-meta"><span>📅 ${a.date}</span><span>⏱ ${a.readTime}</span><span>👁 ${a.views}</span></div><div class="blog-card-title">${a.title}</div><div class="blog-card-excerpt">${a.excerpt}</div><div class="blog-card-footer"><div class="blog-card-author"><div class="blog-author-avatar">${a.authorInit}</div><div class="blog-author-name">${a.author}</div></div><div class="blog-read-btn">Lire →</div></div></div></div>`;}).join('');const top=[...BLOG].sort((a,b)=>parseFloat(b.views)-parseFloat(a.views)).slice(0,4);document.getElementById('blogTopList').innerHTML=top.map((a,i)=>`<div class="blog-top-item" onclick="openArticle(${a.id})"><div class="blog-top-num">0${i+1}</div><div><div class="blog-top-title">${a.title.substring(0,48)}…</div><div class="blog-top-meta">👁 ${a.views} · ${a.readTime}</div></div></div>`).join('');}
+function filterBlog(cat,btn){document.querySelectorAll('.blog-filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderBlog(cat);}
+function openArticle(id){const a=BLOG.find(x=>x.id===id);if(!a)return;const relatedHtml=a.related.map(rid=>{const r=BLOG.find(x=>x.id===rid);return r?`<div class="article-related-link" onclick="openArticle(${r.id})">→ ${r.title}</div>`:''}).join('');document.getElementById('articleModalContent').innerHTML=`<button class="modal-close" onclick="closeArticleModal()" style="position:absolute;top:14px;right:14px;z-index:10;">✕</button><div class="article-modal-img">${a.emoji}</div><div class="article-modal-body"><span class="article-cat-badge">${a.catLabel}</span><div class="article-title">${a.title}</div><div class="article-meta"><div class="article-meta-item"><div class="blog-author-avatar" style="width:28px;height:28px;">${a.authorInit}</div><span>${a.author}</span></div><div class="article-meta-item">📅 ${a.date}</div><div class="article-meta-item">⏱ ${a.readTime}</div><div class="article-meta-item">👁 ${a.views}</div></div><div class="article-content">${a.content}</div><div class="article-tags">${a.tags.map(t=>`<span class="blog-tag">${t}</span>`).join('')}</div><div class="article-related"><div class="article-related-title">// Articles similaires</div><div class="article-related-links">${relatedHtml}</div></div></div>`;document.getElementById('articleModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeArticleModal(){document.getElementById('articleModal').classList.remove('open');document.body.style.overflow='';}
 
-function renderBlog(filter) {
-  currentBlogFilter = filter || 'all';
-  const articles = currentBlogFilter === 'all'
-    ? BLOG
-    : BLOG.filter(a => a.cat === currentBlogFilter);
-
-  const grid = document.getElementById('blogGrid');
-  if(!articles.length) {
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-size:22px;letter-spacing:2px;">AUCUN ARTICLE DANS CETTE CATÉGORIE</div>`;
-    return;
-  }
-  grid.innerHTML = articles.map((a, i) => {
-    const featured = (i === 0 && currentBlogFilter === 'all') ? 'featured' : '';
-    return `<div class="blog-card ${featured}" onclick="openArticle(${a.id})">
-      <div class="blog-card-img">
-        <span>${a.emoji}</span>
-        <div class="blog-card-img-overlay"></div>
-        <span class="blog-card-cat">${a.catLabel}</span>
-      </div>
-      <div class="blog-card-body">
-        <div class="blog-card-meta">
-          <span>📅 ${a.date}</span>
-          <span>⏱ ${a.readTime}</span>
-          <span>👁 ${a.views}</span>
-        </div>
-        <div class="blog-card-title">${a.title}</div>
-        <div class="blog-card-excerpt">${a.excerpt}</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-author">
-            <div class="blog-author-avatar">${a.authorInit}</div>
-            <div class="blog-author-name">${a.author}</div>
-          </div>
-          <div class="blog-read-btn">Lire →</div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  const top = [...BLOG].sort((a,b) => parseFloat(b.views) - parseFloat(a.views)).slice(0,4);
-  document.getElementById('blogTopList').innerHTML = top.map((a,i) => `
-    <div class="blog-top-item" onclick="openArticle(${a.id})">
-      <div class="blog-top-num">0${i+1}</div>
-      <div>
-        <div class="blog-top-title">${a.title.substring(0,48)}…</div>
-        <div class="blog-top-meta">👁 ${a.views} · ${a.readTime}</div>
-      </div>
-    </div>`).join('');
-}
-
-function filterBlog(cat, btn) {
-  document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  renderBlog(cat);
-}
-
-function openArticle(id) {
-  const a = BLOG.find(x => x.id === id);
-  if(!a) return;
-  const relatedHtml = a.related.map(rid => {
-    const r = BLOG.find(x => x.id === rid);
-    return r ? `<div class="article-related-link" onclick="openArticle(${r.id})">→ ${r.title}</div>` : '';
-  }).join('');
-  document.getElementById('articleModalContent').innerHTML = `
-    <button class="modal-close" onclick="closeArticleModal()" style="position:absolute;top:14px;right:14px;z-index:10;">✕</button>
-    <div class="article-modal-img">${a.emoji}</div>
-    <div class="article-modal-body">
-      <span class="article-cat-badge">${a.catLabel}</span>
-      <div class="article-title">${a.title}</div>
-      <div class="article-meta">
-        <div class="article-meta-item">
-          <div class="blog-author-avatar" style="width:28px;height:28px;">${a.authorInit}</div>
-          <span>${a.author}</span>
-        </div>
-        <div class="article-meta-item">📅 ${a.date}</div>
-        <div class="article-meta-item">⏱ ${a.readTime} de lecture</div>
-        <div class="article-meta-item">👁 ${a.views} vues</div>
-      </div>
-      <div class="article-content">${a.content}</div>
-      <div class="article-tags">${a.tags.map(t=>`<span class="blog-tag">${t}</span>`).join('')}</div>
-      <div class="article-related">
-        <div class="article-related-title">// Articles similaires</div>
-        <div class="article-related-links">${relatedHtml}</div>
-      </div>
-    </div>`;
-  document.getElementById('articleModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeArticleModal() {
-  document.getElementById('articleModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ===== REVEAL =====
+// Reveal animation
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// ===== INIT =====
+// Init
 renderHome();
 renderCart();
 renderCatalog();
 renderBlog();
+applyResponsive();
 </script>
 </body>
 </html>
